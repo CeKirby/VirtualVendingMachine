@@ -20,6 +20,7 @@ namespace Capstone
         public Dictionary<string, string> GenerateMasterGoodsList()
         {
             //holds ID and Name
+            //Do we need this? I dont know. 
             Dictionary<string, string> GoodsList = new Dictionary<string, string>();
 
             using (StreamReader sr = new StreamReader(InputFile))

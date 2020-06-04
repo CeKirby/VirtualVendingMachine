@@ -13,7 +13,7 @@ namespace Capstone
         }
         public  Dictionary<string, int> GenerateTypeDictionary()
         {
-            //Holds Name and Price (called in each type object candy, gum, etc.)
+            //Holds Name and Price (just for this type of good)
             Dictionary<string, int> GoodsTypeDictionary = new Dictionary<string, int>();
             using (StreamReader sr = new StreamReader(InputFile))
             {
