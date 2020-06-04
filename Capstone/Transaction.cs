@@ -10,6 +10,17 @@ namespace Capstone
         //insert money
         //display list
         //loop (chose item, dispense item, money left?, display list)
+        public string RetrieveItem()
+        {
+            string itemName = "";
+
+            return itemName;
+        }
+
+        public void DispenseItem()
+        {
+            //remove item from "Stock"
+        }
         //give change
         //finish transaction
     }

@@ -9,7 +9,7 @@ namespace Capstone
     {
         public override string MakeSound()
         {
-            return "Glu Glug, Yum!";
+            return "Glug Glug, Yum!";
         }
         public Dictionary<string, int> GenerateTypeDictionary()
         {

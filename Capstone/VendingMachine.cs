@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.IO;
 
 namespace Capstone
 {
@@ -18,6 +19,7 @@ namespace Capstone
             returnedMoney=balance;
             return returnedMoney;
         }
+<<<<<<< HEAD
        
         public void DispenseItem(item)
         {
@@ -36,5 +38,34 @@ namespace Capstone
         }
 
 
+=======
+        public string InputFile
+        {
+            get
+            {
+                string directory = @"..\..\..\..";
+                string filename = "vendingmachine.csv";
+                return Path.Combine(directory, filename);
+            }
+        }
+        public Dictionary<string, string> GenerateMasterGoodsList()
+        {
+            //holds ID and Name
+            Dictionary<string, string> GoodsList = new Dictionary<string, string>();
+
+            using (StreamReader sr = new StreamReader(InputFile))
+            {
+                while (!sr.EndOfStream)
+                {
+                    string line = sr.ReadLine();
+                    string[] goodsArray = line.Split("|");
+                    GoodsList.Add(goodsArray[0], goodsArray[1]);
+
+                }
+            }
+
+            return GoodsList;
+        }
+>>>>>>> e7f68248386baf0c9386023c239e17fc71c0f9ef
     }
 }
