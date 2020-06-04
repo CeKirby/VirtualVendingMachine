@@ -8,10 +8,7 @@ namespace Capstone
     {
         static void Main(string[] args)
         {
-            Candy bar = new Candy();
             
-            Dictionary<string, string> master = bar.GenerateMasterGoodsList();
-            Console.WriteLine(master);
         }
     }
 }
