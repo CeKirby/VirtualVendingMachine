@@ -1,4 +1,6 @@
 ﻿using System;
+using System.IO;
+using System.Collections.Generic;
 
 namespace Capstone
 {
@@ -6,7 +8,10 @@ namespace Capstone
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Candy bar = new Candy();
+            
+            Dictionary<string, string> master = bar.GenerateMasterGoodsList();
+            Console.WriteLine(master);
         }
     }
 }

@@ -10,5 +10,11 @@ namespace Capstone
         {
             return "Crunch Crunch, Yum!";
         }
+
+        //public Dictionary<string, int> GenerateTypeDictionary()
+        //{
+        //    return 
+        //}
+
     }
 }
