@@ -7,7 +7,6 @@ namespace Capstone
 {
     public abstract class Goods
     {
-        public List<string> Stock { get; set; }
 
         public string InputFile
         {
@@ -57,8 +56,6 @@ namespace Capstone
                 return PriceDictionary;
             }
         }
-
-
     }
 }
 

@@ -8,12 +8,12 @@ namespace Capstone
 
     public class PotentialOptions
     {
+        public decimal currentMoneyProvided = 0.00M;
+        public decimal currentBalance = 0.00M;
 
-        decimal currentMoneyProvided = 0.00M;
-        decimal currentBalance = 0.00M;
         bool showMainMenu = true;
 
-        public void DisplayItems()
+        public void DisplayItems()//claire will fix
         {
             Console.WriteLine("Beverages + quantityRemaining(Inherited from class?)");
             Console.WriteLine("Candy + quantityRemaining(Inherited from class?)");
@@ -25,11 +25,16 @@ namespace Capstone
         }
         public void PurchaseItems()
         {
-            string outputDirectory = @"C:\Users\Student\workspace\csharp-capstone-module-1-team-3";
+            VendingMachine vendingMachine = new VendingMachine();
+            
+            //creates path to log purchases
+            string outputDirectory = @"..\..\..\..";
             string outputFileName = "Log.txt";
             string outputFullPath = Path.Combine(outputDirectory, outputFileName);
             DateTime now = DateTime.Now;
+            
 
+           //Purchase Items Menu
             Console.WriteLine("(1) Feed Money");
             Console.WriteLine("(2) Select Product");
             Console.WriteLine("(3) Finish Transaction");
@@ -37,7 +42,7 @@ namespace Capstone
             Console.WriteLine("Current money provided: " + currentBalance);
             string userInputPurchase = Console.ReadLine();
 
-            if (userInputPurchase == "1")
+            if (userInputPurchase == "1") //Feed Money
             {
                 Console.WriteLine("Please insert money in whole dollars($1, $2, $5, or $10)");
                 string currentMoneyProvidedString = Console.ReadLine();
@@ -58,19 +63,35 @@ namespace Capstone
                 }
                 PurchaseItems();
             }
-            else if (userInputPurchase == "2")
+            else if (userInputPurchase == "2") //Select Product
             {
-                //display Goods Dictionary with item name and location (A1)
+                //TODOdisplay Goods Dictionary with item name and location (A1)
+
                 Console.WriteLine("Please enter the location code for your item.");
-                string enteredItemLocation = Console.ReadLine();
-                //Write another if for each of the choices and call method DispenseItem
-                //Copy the try method above for each case and change FEED MONEY to ITEM ORDERED and LOCATION + currentAmount + amountAfterPurchase
-                //if sold out Console.WriteLine("Item is sold out") and return to Purchase Menu
-                //if doesn't exist Console.WriteLine("Item does not exist") and return to Purchase Menu
+                string enteredItemID = Console.ReadLine();
+                Item selectedItem = new Item(enteredItemID);
+                //check if entered Item ID exists
+                if (!selectedItem.ItemExists(enteredItemID))
+                {
+                    Console.WriteLine("You have entered an invalid item code");
+                    //return to Main Menu
+                } else if (selectedItem.ItemExists(enteredItemID) && //item is SOLDOUT)
+                {
+                    Console.WriteLine("The item you selected is Sold Out");
+                    //return to Main Menu
+                } else
+                {
+                    //call method DispenseItem
+                    vendingMachine.DispenseItemPrintOut(enteredItemID, currentBalance);
+                }
+
             }
-            else if (userInputPurchase == "3")
+            else if (userInputPurchase == "3") //Finish Transaction
             {
                 //call method GiveChange
+                Money money = new Money(currentBalance);
+
+                money.GiveChange(currentBalance);
                 currentBalance = 0;
                 try
                 {
@@ -129,5 +150,5 @@ namespace Capstone
         }
     }
 }
-}
+
 
