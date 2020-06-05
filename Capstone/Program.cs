@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.IO;
 
 namespace Capstone
 {
-    public class Program : PotenitialOptions
+    public class Program : PotentialOptions
     {
 
         static void Main(string[] args)
@@ -26,15 +28,15 @@ namespace Capstone
             switch (userInputMain)
             {
                 case "1":
-                    PotenitialOptions displayItems = new PotenitialOptions();
+                    PotentialOptions displayItems = new PotentialOptions();
                     displayItems.DisplayItems();
                     return true;
                 case "2":
-                    PotenitialOptions purchaseItems = new PotenitialOptions();
+                    PotentialOptions purchaseItems = new PotentialOptions();
                     purchaseItems.PurchaseItems();
                     return true;
                 case "4":
-                    PotenitialOptions hiddenMenu = new PotenitialOptions();
+                    PotentialOptions hiddenMenu = new PotentialOptions();
                     hiddenMenu.UserHiddenMenu();
                     Console.WriteLine("Hidden menu");
                     return true;

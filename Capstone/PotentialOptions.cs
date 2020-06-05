@@ -5,9 +5,10 @@ using System.IO;
 
 namespace Capstone
 {
-    public class PotenitialOptions
+
+    public class PotentialOptions
     {
-        
+
         decimal currentMoneyProvided = 0.00M;
         decimal currentBalance = 0.00M;
         bool showMainMenu = true;
@@ -35,37 +36,30 @@ namespace Capstone
             Console.WriteLine();
             Console.WriteLine("Current money provided: " + currentBalance);
             string userInputPurchase = Console.ReadLine();
+
             if (userInputPurchase == "1")
             {
                 Console.WriteLine("Please insert money in whole dollars($1, $2, $5, or $10)");
-                Console.WriteLine(currentMoneyProvided);
-                //return to PurchaseItems menu and rerun
+                string currentMoneyProvidedString = Console.ReadLine();
+                decimal newCurrentMoneyProvided = decimal.Parse(currentMoneyProvidedString);
+                try
+                {
+                    using (StreamWriter sw = new StreamWriter(outputFullPath, true))
+                    {
+                        currentBalance = newCurrentMoneyProvided + currentBalance;
+                        sw.WriteLine(now.ToString() + " " + "FEED MONEY: " + "$" + newCurrentMoneyProvided + " " + "$" + currentBalance);
+
+                    }
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("There was an error");
+                    //return to PurchaseItems menu and rerun
+                }
+                PurchaseItems();
             }
             else if (userInputPurchase == "2")
             {
-
-                if (userInputPurchase == "1")
-                {
-                    Console.WriteLine("Please insert money in whole dollars($1, $2, $5, or $10)");
-                    string currentMoneyProvidedString = Console.ReadLine();
-                    decimal newCurrentMoneyProvided = decimal.Parse(currentMoneyProvidedString);
-                    try
-                    {
-                        using (StreamWriter sw = new StreamWriter(outputFullPath, true))
-                        {
-                            currentBalance = newCurrentMoneyProvided + currentBalance;
-                            sw.WriteLine(now.ToString() + " " + "FEED MONEY: " + "$" + newCurrentMoneyProvided + " " + "$" +currentBalance);
-                            
-                        }
-                    }
-                    catch (Exception e)
-                    {
-                            Console.WriteLine("There was an error");
-                        //return to PurchaseItems menu and rerun
-                    }
-                        PurchaseItems();       
-                } else if (userInputPurchase == "2")
-                {
                 //display Goods Dictionary with item name and location (A1)
                 Console.WriteLine("Please enter the location code for your item.");
                 string enteredItemLocation = Console.ReadLine();
@@ -78,7 +72,6 @@ namespace Capstone
             {
                 //call method GiveChange
                 currentBalance = 0;
-                //return to Main Menu
                 try
                 {
                     using (StreamWriter sw = new StreamWriter(outputFullPath, true))
@@ -105,15 +98,15 @@ namespace Capstone
                     switch (userInputMain)
                     {
                         case "1":
-                            PotenitialOptions displayItems = new PotenitialOptions();
+                            PotentialOptions displayItems = new PotentialOptions();
                             displayItems.DisplayItems();
                             return true;
                         case "2":
-                            PotenitialOptions purchaseItems = new PotenitialOptions();
+                            PotentialOptions purchaseItems = new PotentialOptions();
                             purchaseItems.PurchaseItems();
                             return true;
                         case "4":
-                            PotenitialOptions hiddenMenu = new PotenitialOptions();
+                            PotentialOptions hiddenMenu = new PotentialOptions();
                             hiddenMenu.UserHiddenMenu();
                             Console.WriteLine("Hidden menu");
                             return true;
@@ -123,7 +116,7 @@ namespace Capstone
                         default:
                             return true;
                     }
-                }              
+                }
             }
         }
         public void UserExits()
@@ -136,3 +129,5 @@ namespace Capstone
         }
     }
 }
+}
+
