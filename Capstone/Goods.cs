@@ -7,13 +7,20 @@ namespace Capstone
 {
     public abstract class Goods
     {
-
-        public abstract string MakeSound();
-
         public List<string> Stock { get; set; }
 
+        public string InputFile
+        {
+            get
+            {
+                string directory = @"..\..\..\..";
+                string filename = "vendingmachine.csv";
+                return Path.Combine(directory, filename);
+            }
+        }
+
         //holds ID and Name
-        public Dictionary<string, string> MasterGoodsDictionary
+        public Dictionary<string, string> GoodsKeyDictionary
         {
             get
             {
@@ -31,7 +38,27 @@ namespace Capstone
                 return allGoods;
             }
         }
+        public Dictionary<string, int> ItemPriceDictionary
+        {
+            get
+            {
+                //Holds Name and Price 
+                Dictionary<string, int> PriceDictionary = new Dictionary<string, int>();
+                using (StreamReader sr = new StreamReader(InputFile))
+                {
+                    while (!sr.EndOfStream)
+                    {
+                        string line = sr.ReadLine();
+                        string[] goodsArray = line.Split("|");
+                        PriceDictionary.Add(goodsArray[1], int.Parse(goodsArray[2]));
+
+                    }
+                }
+                return PriceDictionary;
+            }
+        }
 
 
     }
 }
+
