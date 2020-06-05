@@ -16,6 +16,11 @@ namespace Capstone
                 return Path.Combine(directory, filename);
             }
         }
+        
+        public bool ItemExists(string itemID) 
+        {
+                return MasterGoodsDictionary.ContainsKey(itemID);
+        }
     
 
         //holds ID and Name
