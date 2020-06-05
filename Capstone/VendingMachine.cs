@@ -20,7 +20,24 @@ namespace Capstone
             return returnedMoney;
         }
 
-       
+        public string InputFile
+        {
+            get
+            {
+                string directory = @"..\..\..\..";
+                string filename = "vendingmachine.csv";
+                return Path.Combine(directory, filename);
+            }
+        }
+        public Dictionary<string, int> StockRoom
+        {
+            get
+            {
+                
+                return stock;
+            }
+        }
+
         public void DispenseItem(item)
         {
             balance -= DispenseItem.price;
