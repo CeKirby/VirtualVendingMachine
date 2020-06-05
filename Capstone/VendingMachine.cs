@@ -19,11 +19,11 @@ namespace Capstone
             returnedMoney=balance;
             return returnedMoney;
         }
-<<<<<<< HEAD
+
        
         public void DispenseItem(item)
         {
-            balance -=DispenseItem.price;
+            balance -= DispenseItem.price;
             inventory[item]
         }
         
@@ -34,38 +34,17 @@ namespace Capstone
            {
                string[] item = line.Split("|");
                 Inventory.Add(item[0], new VendingMachineItem(item[1], decimal.Parse(item[2]), item[3]));// might need rearanging 
-          }// filler terms inventory; vendingmachineitem;stocklist; item
+          } // filler terms inventory; vendingmachineitem;stocklist; item
         }
 
 
-=======
-        public string InputFile
-        {
-            get
-            {
-                string directory = @"..\..\..\..";
-                string filename = "vendingmachine.csv";
-                return Path.Combine(directory, filename);
-            }
+
+        
         }
-        public Dictionary<string, string> GenerateMasterGoodsList()
-        {
-            //holds ID and Name
-            Dictionary<string, string> GoodsList = new Dictionary<string, string>();
 
-            using (StreamReader sr = new StreamReader(InputFile))
-            {
-                while (!sr.EndOfStream)
-                {
-                    string line = sr.ReadLine();
-                    string[] goodsArray = line.Split("|");
-                    GoodsList.Add(goodsArray[0], goodsArray[1]);
+            
 
-                }
-            }
-
-            return GoodsList;
-        }
->>>>>>> e7f68248386baf0c9386023c239e17fc71c0f9ef
+            
+        
     }
 }

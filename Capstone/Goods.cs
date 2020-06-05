@@ -8,10 +8,9 @@ namespace Capstone
     public abstract class Goods
     {
 
-
-        
-
         public abstract string MakeSound();
+
+        public List<string> Stock { get; set; }
        
         
 
