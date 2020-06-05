@@ -7,7 +7,7 @@ namespace Capstone
 {
     public class PotenitialOptions
     {
-        //do they enter the money provided and we readline that in?
+        
         decimal currentMoneyProvided = 0.00M;
         decimal currentBalance = 0.00M;
         bool showMainMenu = true;
@@ -18,6 +18,7 @@ namespace Capstone
             Console.WriteLine("Candy + quantityRemaining(Inherited from class?)");
             Console.WriteLine("Chips + quantityRemaining(Inherited from class?)");
             Console.WriteLine("Gum + quantityRemaining(Inherited from class?)");
+            Console.WriteLine();
             //if quantity = 0 Console.WriteLine("SOLD OUT")
             //Return to MainMenu
         }
@@ -31,19 +32,22 @@ namespace Capstone
             Console.WriteLine("(1) Feed Money");
             Console.WriteLine("(2) Select Product");
             Console.WriteLine("(3) Finish Transaction");
+            Console.WriteLine();
+            Console.WriteLine("Current money provided: " + currentBalance);
             string userInputPurchase = Console.ReadLine();
 
                 if (userInputPurchase == "1")
                 {
                     Console.WriteLine("Please insert money in whole dollars($1, $2, $5, or $10)");
                     string currentMoneyProvidedString = Console.ReadLine();
-                    decimal newCurrentMoneyProvided = int.Parse(currentMoneyProvidedString);
+                    decimal newCurrentMoneyProvided = decimal.Parse(currentMoneyProvidedString);
                     try
                     {
                         using (StreamWriter sw = new StreamWriter(outputFullPath, true))
                         {
                             currentBalance = newCurrentMoneyProvided + currentBalance;
                             sw.WriteLine(now.ToString() + " " + "FEED MONEY: " + "$" + newCurrentMoneyProvided + " " + "$" +currentBalance);
+                            
                         }
                     }
                     catch (Exception e)
@@ -55,6 +59,8 @@ namespace Capstone
                 } else if (userInputPurchase == "2")
                 {
                 //display Goods Dictionary with item name and location (A1)
+                Console.WriteLine("Please enter the location code for your item.");
+                string enteredItemLocation = Console.ReadLine();
                 //Write another if for each of the choices and call method DispenseItem
                 //Copy the try method above for each case and change FEED MONEY to ITEM ORDERED and LOCATION + currentAmount + amountAfterPurchase
                 //if sold out Console.WriteLine("Item is sold out") and return to Purchase Menu

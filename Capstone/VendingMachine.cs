@@ -21,21 +21,21 @@ namespace Capstone
         }
 
        
-        public void DispenseItem(item)
-        {
-            balance -= DispenseItem.price;
-            inventory[item]
-        }
+        //public void DispenseItem(item)
+        //{
+        //    balance -= DispenseItem.price;
+        //    inventory[item]
+        //}
         
         //stock list would pull in from the good class 
-        public void FillSlots(string[] stockList)
-        {
-            foreach (string line in stockList)
-           {
-               string[] item = line.Split("|");
-                Inventory.Add(item[0], new VendingMachineItem(item[1], decimal.Parse(item[2]), item[3]));// might need rearanging 
-          } // filler terms inventory; vendingmachineitem;stocklist; item
-        }
+        //public void FillSlots(string[] stockList)
+        //{
+        //    foreach (string line in stockList)
+        //   {
+        //       string[] item = line.Split("|");
+        //        Inventory.Add(item[0], new VendingMachineItem(item[1], decimal.Parse(item[2]), item[3]));// might need rearanging 
+        //  } // filler terms inventory; vendingmachineitem;stocklist; item
+        //}
 
 
 
@@ -46,5 +46,5 @@ namespace Capstone
 
             
         
-    }
+    
 }
