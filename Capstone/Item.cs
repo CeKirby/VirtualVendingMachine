@@ -9,7 +9,6 @@ namespace Capstone
         public Item (string itemID)
         {
             ItemID = itemID;
-
         }
 
         public string ItemID { get; }
@@ -21,7 +20,13 @@ namespace Capstone
             }
            
         }
-
+        public decimal ItemPrice
+        {
+            get
+            {
+                return ItemPriceDictionary[ItemName];
+            }
+        }
         public string ItemType
         {
             get
@@ -44,21 +49,24 @@ namespace Capstone
             }
         }
 
-        public string ItemMessage
+        public void PrintItemMessage(string ItemType)
         {
-            get
+            switch (ItemType)
             {
-                return "";
-            }
+                case "Chips":
+                    Console.WriteLine("Crunch Crunch, Yum!");
+                    break;
+                case "Candy":
+                    Console.WriteLine("Munch Munch, Yum!");
+                    break;
+                case "Drink":
+                    Console.WriteLine("Glug Glug, Yum!");
+                    break;
+                case "Gum":
+                    Console.WriteLine("Chew Chew, Yum!");
+                    break;
+                }
 
-        }
-
-        public decimal ItemPrice
-        {
-            get
-            {
-                return 0.0M;
-            }
         }
 
         public bool ItemExists(string itemID)

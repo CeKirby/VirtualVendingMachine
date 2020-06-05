@@ -20,15 +20,7 @@ namespace Capstone
             return returnedMoney;
         }
 
-        public string InputFile
-        {
-            get
-            {
-                string directory = @"..\..\..\..";
-                string filename = "vendingmachine.csv";
-                return Path.Combine(directory, filename);
-            }
-        }
+
         public Dictionary<string, int> VendingMachineStock = new Dictionary<string, int>
         {
             {"A1", 5 }, {"A2", 5 }, {"A3", 5 }, {"A4", 5 },
@@ -52,23 +44,28 @@ namespace Capstone
         }
         
         //stock list would pull in from the good class 
-        //public void FillSlots(string[] stockList)
-        //{
-        //    foreach (string line in stockList)
-        //   {
-        //       string[] item = line.Split("|");
-        //        Inventory.Add(item[0], new VendingMachineItem(item[1], decimal.Parse(item[2]), item[3]));// might need rearanging 
-        //  } // filler terms inventory; vendingmachineitem;stocklist; item
-        //}
-
+        public void FillSlots(string[] stockList)
+        {
+            foreach (string line in stockList)
+           {
+               string[] item = line.Split("|");
+                Inventory.Add(item[0], new VendingMachineItem(item[1], decimal.Parse(item[2]), item[3]));// might need rearanging 
+          } // filler terms inventory; vendingmachineitem;stocklist; item
+        }
+        public string InputFile
+        {
+            get
+            {
+                string directory = @"..\..\..\..";
+                string filename = "vendingmachine.csv";
+                return Path.Combine(directory, filename);
+            }
+        }
 
 
         
         }
-
-            
-
-            
+ 
         
     
 }
