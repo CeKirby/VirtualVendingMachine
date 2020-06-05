@@ -73,9 +73,6 @@ namespace Capstone
         {
             return GoodsKeyDictionary.ContainsKey(itemID);
         }
-        public override string MakeSound()
-        {
-            throw new NotImplementedException();
-        }
+
     }
 }

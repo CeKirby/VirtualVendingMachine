@@ -16,6 +16,22 @@ namespace Capstone
         }       
             public static bool MainMenu() 
             {
+                //How do I run the method from another class? Sorry I forget :)
+                Console.WriteLine("(1) Feed Money");
+                Console.WriteLine("(2) Select Product");
+                Console.WriteLine("(3) Finish Transaction");
+            }
+            else if (userInputMain == "3")
+            {
+                Console.WriteLine("GoodBye");
+                //run return money method?
+                System.Environment.Exit(0);
+
+            }
+            else if (userInputMain == "4")
+            {
+                //How do I run the method from another class? Sorry I forget :)
+                Console.WriteLine("Hidden menu");
                 Console.WriteLine("Welcome to the Vendo-Matic 800!");
                 Console.WriteLine("(1) Display Vending Machine Items");
                 Console.WriteLine("(2) Purchase");
@@ -45,6 +61,7 @@ namespace Capstone
                     return true;
                 }
             }
+
 
             //if (userInputMain == "1")
             //{

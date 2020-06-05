@@ -35,6 +35,14 @@ namespace Capstone
             Console.WriteLine();
             Console.WriteLine("Current money provided: " + currentBalance);
             string userInputPurchase = Console.ReadLine();
+            if (userInputPurchase == "1")
+            {
+                Console.WriteLine("Please insert money in whole dollars($1, $2, $5, or $10)");
+                Console.WriteLine(currentMoneyProvided);
+                //return to PurchaseItems menu and rerun
+            }
+            else if (userInputPurchase == "2")
+            {
 
                 if (userInputPurchase == "1")
                 {
@@ -65,11 +73,12 @@ namespace Capstone
                 //Copy the try method above for each case and change FEED MONEY to ITEM ORDERED and LOCATION + currentAmount + amountAfterPurchase
                 //if sold out Console.WriteLine("Item is sold out") and return to Purchase Menu
                 //if doesn't exist Console.WriteLine("Item does not exist") and return to Purchase Menu
-                }
-                else if (userInputPurchase == "3")
-                {
+            }
+            else if (userInputPurchase == "3")
+            {
                 //call method GiveChange
                 currentBalance = 0;
+                //return to Main Menu
                 try
                 {
                     using (StreamWriter sw = new StreamWriter(outputFullPath, true))

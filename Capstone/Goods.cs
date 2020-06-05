@@ -7,9 +7,6 @@ namespace Capstone
 {
     public abstract class Goods
     {
-
-        public abstract string MakeSound();
-
         public List<string> Stock { get; set; }
 
         public string InputFile
@@ -54,7 +51,7 @@ namespace Capstone
                         string line = sr.ReadLine();
                         string[] goodsArray = line.Split("|");
                         PriceDictionary.Add(goodsArray[1], int.Parse(goodsArray[2]));
-                        
+
                     }
                 }
                 return PriceDictionary;
@@ -64,3 +61,4 @@ namespace Capstone
 
     }
 }
+
