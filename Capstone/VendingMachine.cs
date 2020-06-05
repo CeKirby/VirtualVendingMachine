@@ -7,62 +7,66 @@ namespace Capstone
 {
     public class VendingMachine
     {
+        decimal balance = 0;
         public decimal FeedMoney(int money)
         {
-            decimal balance = 0;
+
             balance += money;
             return balance;
         }
-        public decimal ReturnMoney(decimal balance)
-        {
-            decimal returnedMoney = 0m;
-            returnedMoney=balance;
-            return returnedMoney;
-        }
-       
-        public void DispenseItem(item)
-        {
-            balance -=DispenseItem.price;
-            inventory[item]
-        }
-        
-        //stock list would pull in from the good class 
-        public void FillSlots(string[] stockList)
-        {
-            foreach (string line in stockList)
-           {
-               string[] item = line.Split("|");
-                Inventory.Add(item[0], new VendingMachineItem(item[1], decimal.Parse(item[2]), item[3]));// might need rearanging 
-          }// filler terms inventory; vendingmachineitem;stocklist; item
-        }
 
+        /// <summary>
+        /// have to find a way to connect balance from above to the setter/getter below in UserCurrentBalance
+        /// </summary>
+        public decimal UserCurrentBalance { get; set; }
+        private const decimal dollarValue = 1m;
+        private const decimal quarterValue = .25M;
+        private const decimal dimeValue = .10M;
+        private const decimal nickelValue = .05M;
 
-        public string InputFile
+        private int dollarAmount = 0;
+        private int quarterAmount = 0;
+        private int dimeAmount = 0;
+        private int nickelAmount = 0;
+        public string FinishTransaction(decimal change)
         {
-            get
+            decimal totalChange = change;
+            //variables
+
+            string result = "";
+            dollarAmount = (int)(change / dollarValue);
+            change -= dollarAmount / dollarValue;
+            quarterAmount = (int)(change / quarterValue);
+            change -= quarterAmount * quarterValue;
+            dimeAmount = (int)(change / dimeValue);
+            change -= dimeAmount * dimeValue;
+            nickelAmount = (int)(change / nickelValue);
+            change -= nickelAmount * nickelValue;
+            UserCurrentBalance = 0;
+            //add the transaction for the log
+
+            if (quarterAmount == 0 && nickelAmount == 0 && dimeAmount == 0)
             {
-                string directory = @"..\..\..\..";
-                string filename = "vendingmachine.csv";
-                return Path.Combine(directory, filename);
+                result = $"Your Change Is {dollarAmount} Dollar(s) For a Total of ${totalChange}.";
             }
-        }
-        public Dictionary<string, string> GenerateMasterGoodsList()
-        {
-            //holds ID and Name
-            Dictionary<string, string> GoodsList = new Dictionary<string, string>();
-
-            using (StreamReader sr = new StreamReader(InputFile))
+            else if (nickelAmount == 0 && dimeAmount == 0)
             {
-                while (!sr.EndOfStream)
-                {
-                    string line = sr.ReadLine();
-                    string[] goodsArray = line.Split("|");
-                    GoodsList.Add(goodsArray[0], goodsArray[1]);
-
-                }
+                result = $"Your Change Is {dollarAmount} Dollar(s) {quarterAmount} Quarter(s) For a Total of ${totalChange}.";
             }
-
-            return GoodsList;
+            else if (dimeAmount == 0)
+            {
+                result = $"Your Change Is {dollarAmount} Dollar(s) {quarterAmount} Quarter(s) and {nickelAmount} Nickel(s) For a Total of ${totalChange}.";
+            }
+            else if (nickelAmount == 0)
+            {
+                result = $"Your Change Is {dollarAmount} Dollar(s) {quarterAmount} Quarter(s) and {dimeAmount} Dime(s) For a Total of ${totalChange}.";
+            }
+            else
+            {
+                result = $"Your Change Is {dollarAmount} Dollar(s) {quarterAmount} Quarter(s), {dimeAmount} Dime(s) and {nickelAmount} Nickel(s) For a Total of ${totalChange}.";
+            }
+            return result;
         }
+
     }
 }
