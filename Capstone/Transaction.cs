@@ -1,16 +1,28 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.IO;
 
 namespace Capstone
 {
     public class Transaction
     {
-        //start transaction
-        //insert money
-        //display list
-        //loop (chose item, dispense item, money left?, display list)
-        //give change
-        //finish transaction
+        public string InputFile
+        {
+            get
+            {
+                string directory = @"..\..\..\..";
+                string filename = "vendingmachine.csv";
+                return Path.Combine(directory, filename);
+            }
+        }
+        
+
+        public void DispenseItem()
+        {
+            //remove item from "Stock"
+        }
+
+
     }
 }

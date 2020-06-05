@@ -8,6 +8,10 @@ namespace Capstone
     public abstract class Goods
     {
 
+        public abstract string MakeSound();
+
+        public List<string> Stock { get; set; }
+
         public string InputFile
         {
             get
@@ -17,30 +21,45 @@ namespace Capstone
                 return Path.Combine(directory, filename);
             }
         }
-        public Dictionary<string, string> GenerateMasterGoodsList()
+
+        //holds ID and Name
+        public Dictionary<string, string> GoodsKeyDictionary
         {
-            //holds ID and Name
-            //Do we need this? I dont know. 
-            Dictionary<string, string> GoodsList = new Dictionary<string, string>();
-
-            using (StreamReader sr = new StreamReader(InputFile))
+            get
             {
-                while (!sr.EndOfStream)
+                Dictionary<string, string> allGoods = new Dictionary<string, string>();
+                using (StreamReader sr = new StreamReader(InputFile))
                 {
-                    string line = sr.ReadLine();
-                    string[] goodsArray = line.Split("|");
-                    GoodsList.Add(goodsArray[0], goodsArray[1]);
+                    while (!sr.EndOfStream)
+                    {
+                        string line = sr.ReadLine();
+                        string[] goodsArray = line.Split("|");
+                        allGoods.Add(goodsArray[0], goodsArray[1]);
 
+                    }
                 }
+                return allGoods;
             }
-
-
-                return GoodsList;
         }
-
-        public abstract string MakeSound();
-       
-        
+        public Dictionary<string, int> ItemPriceDictionary
+        {
+            get
+            {
+                //Holds Name and Price 
+                Dictionary<string, int> PriceDictionary = new Dictionary<string, int>();
+                using (StreamReader sr = new StreamReader(InputFile))
+                {
+                    while (!sr.EndOfStream)
+                    {
+                        string line = sr.ReadLine();
+                        string[] goodsArray = line.Split("|");
+                        PriceDictionary.Add(goodsArray[1], int.Parse(goodsArray[2]));
+                        
+                    }
+                }
+                return PriceDictionary;
+            }
+        }
 
 
     }
