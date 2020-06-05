@@ -25,6 +25,13 @@ namespace Capstone
                 Console.WriteLine("(2) Select Product");
                 Console.WriteLine("(3) Finish Transaction");
             }
+            else if (userInputMain == "3")
+            {
+                Console.WriteLine("GoodBye");
+                //run return money method?
+                System.Environment.Exit(0);
+
+            }
             else if (userInputMain == "4")
             {
                 //How do I run the method from another class? Sorry I forget :)

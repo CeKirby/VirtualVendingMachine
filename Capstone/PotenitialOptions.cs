@@ -23,24 +23,25 @@ namespace Capstone
             Console.WriteLine("(2) Select Product");
             Console.WriteLine("(3) Finish Transaction");
             string userInputPurchase = Console.ReadLine();
-                if (userInputPurchase == "1")
-                {
-                    Console.WriteLine("Please insert money in whole dollars($1, $2, $5, or $10)");
-                    Console.WriteLine(currentMoneyProvided);
-                    //return to PurchaseItems menu and rerun
-                } else if (userInputPurchase == "2")
-                {
+            if (userInputPurchase == "1")
+            {
+                Console.WriteLine("Please insert money in whole dollars($1, $2, $5, or $10)");
+                Console.WriteLine(currentMoneyProvided);
+                //return to PurchaseItems menu and rerun
+            }
+            else if (userInputPurchase == "2")
+            {
                 //display Goods Dictionary with item name and location (A1)
                 //Write another if for each of the choices and call method DispenseItem
                 //if sold out Console.WriteLine("Item is sold out") and return to Purchase Menu
                 //if doesn't exist Console.WriteLine("Item does not exist") and return to Purchase Menu
-                }
-                else if (userInputPurchase == "3")
-                {
+            }
+            else if (userInputPurchase == "3")
+            {
                 //call method GiveChange
                 currentBalance = 0;
                 //return to Main Menu
-                }
+            }
         }
         public void UserExits()
         {
