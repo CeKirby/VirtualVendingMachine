@@ -46,7 +46,11 @@ namespace Capstone
 
         public string ItemMessage
         {
-            get;
+            get
+            {
+                return "";
+            }
+
         }
 
         public decimal ItemPrice
