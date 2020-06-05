@@ -17,41 +17,6 @@ namespace Capstone
             }
         }
         
-        public bool ItemExists(string itemID) 
-        {
-                return MasterGoodsDictionary.ContainsKey(itemID);
-        }
-    
-
-        //holds ID and Name
-        public Dictionary<string, string> MasterGoodsDictionary
-        {
-            get
-            {
-                Dictionary<string, string> allGoods = new Dictionary<string, string>();
-                using (StreamReader sr = new StreamReader(InputFile))
-                {
-                    while (!sr.EndOfStream)
-                    {
-                        string line = sr.ReadLine();
-                        string[] goodsArray = line.Split("|");
-                        allGoods.Add(goodsArray[0], goodsArray[1]);
-
-                    }
-                }
-                return allGoods;
-            }
-        }
-
-
-        public string RetrieveItem(string itemID)
-        {
-            VendingMachine vm = new VendingMachine();
-             
-            string itemName = MasterGoodsDictionary[itemID];
-
-            return itemName;
-        }
 
         public void DispenseItem()
         {

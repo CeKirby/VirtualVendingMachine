@@ -11,23 +11,27 @@ namespace Capstone
         {
             return "Chew Chew, Yum!";
         }
-        public Dictionary<string, int> GenerateTypeDictionary()
+        public Dictionary<string, int> TypeDictionary
         {
-            //Holds Name and Price (called in each type object candy, gum, etc.)
-            Dictionary<string, int> GoodsTypeDictionary = new Dictionary<string, int>();
-            using (StreamReader sr = new StreamReader(InputFile))
+            get
             {
-                while (!sr.EndOfStream)
+
+                //Holds Name and Price (called in each type object candy, gum, etc.)
+                Dictionary<string, int> GoodsTypeDictionary = new Dictionary<string, int>();
+                using (StreamReader sr = new StreamReader(InputFile))
                 {
-                    string line = sr.ReadLine();
-                    string[] goodsArray = line.Split("|");
-                    if (goodsArray[0].Contains("D"))
+                    while (!sr.EndOfStream)
                     {
-                        GoodsTypeDictionary.Add(goodsArray[1], int.Parse(goodsArray[2]));
+                        string line = sr.ReadLine();
+                        string[] goodsArray = line.Split("|");
+                        if (goodsArray[0].Contains("D"))
+                        {
+                            GoodsTypeDictionary.Add(goodsArray[1], int.Parse(goodsArray[2]));
+                        }
                     }
                 }
+                return GoodsTypeDictionary;
             }
-            return GoodsTypeDictionary;
         }
     }
 }
