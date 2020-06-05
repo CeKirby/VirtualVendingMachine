@@ -15,10 +15,7 @@ namespace Capstone
 
         public void DisplayItems()//claire will fix
         {
-            Console.WriteLine("Beverages + quantityRemaining(Inherited from class?)");
-            Console.WriteLine("Candy + quantityRemaining(Inherited from class?)");
-            Console.WriteLine("Chips + quantityRemaining(Inherited from class?)");
-            Console.WriteLine("Gum + quantityRemaining(Inherited from class?)");
+
             Console.WriteLine();
             //if quantity = 0 Console.WriteLine("SOLD OUT")
             //Return to MainMenu
@@ -75,14 +72,15 @@ namespace Capstone
                 {
                     Console.WriteLine("You have entered an invalid item code");
                     //return to Main Menu
-                } else if (selectedItem.ItemExists(enteredItemID) && //item is SOLDOUT)
+                } else if (selectedItem.ItemExists(enteredItemID) /*&& item is SOLDOUT*/)
                 {
                     Console.WriteLine("The item you selected is Sold Out");
                     //return to Main Menu
                 } else
                 {
-                    //call method DispenseItem
+                    //TODO call method DispenseItem
                     vendingMachine.DispenseItemPrintOut(enteredItemID, currentBalance);
+                    selectedItem.PrintItemMessage(selectedItem.ItemType);
                 }
 
             }
@@ -90,9 +88,8 @@ namespace Capstone
             {
                 //call method GiveChange
                 Money money = new Money(currentBalance);
-
-                money.GiveChange(currentBalance);
-                currentBalance = 0;
+                decimal changeNeeded = money.CurrentBalance;
+                Console.WriteLine(money.GiveChange(changeNeeded));
                 try
                 {
                     using (StreamWriter sw = new StreamWriter(outputFullPath, true))

@@ -12,7 +12,7 @@ namespace Capstone
         }
 
         public decimal currentMoneyProvided = 0.00M;
-        public decimal currentBalance = 0.00M;
+
         public decimal CurrentBalance { get; set; }
         public decimal FeedMoney(decimal money)
         {
@@ -34,7 +34,6 @@ namespace Capstone
             decimal totalChange = change;
             
             //variables
-
             string result = "";
             dollarAmount = (int)(change / dollarValue);
             change -= dollarAmount / dollarValue;
@@ -45,7 +44,6 @@ namespace Capstone
             nickelAmount = (int)(change / nickelValue);
             change -= nickelAmount * nickelValue;
             CurrentBalance = 0;
-            //add the transaction for the log
 
             if (quarterAmount == 0 && nickelAmount == 0 && dimeAmount == 0)
             {

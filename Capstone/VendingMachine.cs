@@ -25,10 +25,7 @@ namespace Capstone
             }
         }
 
-        public void PrintItemsAvailable()
-        {
 
-        }
 
         public void DispenseItemPrintOut(string itemID, decimal currentBalance)
         {
