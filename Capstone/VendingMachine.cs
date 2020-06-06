@@ -9,13 +9,21 @@ namespace Capstone
     {
 
 
-        public Dictionary<string, int> VendingMachineStock = new Dictionary<string, int>
+
+        public Dictionary<string, int> VendingMachineStock
         {
-            {"A1", 5 }, {"A2", 5 }, {"A3", 5 }, {"A4", 5 },
-            {"B1", 5 }, {"B2", 5 }, {"B3", 5 }, {"B4", 5 },
-            {"C1", 5 }, {"C2", 5 }, {"C3", 5 }, {"C4", 5 },
-            {"D1", 5 }, {"D2", 5 }, {"D3", 5 }, {"D4", 5 },
-        };
+            get
+            {
+                Dictionary<string, int> vendingMachineSlots = new Dictionary<string, int>
+                {
+                    {"A1", 5 }, {"A2", 5 }, {"A3", 5 }, {"A4", 5 },
+                    {"B1", 5 }, {"B2", 5 }, {"B3", 5 }, {"B4", 5 },
+                    {"C1", 5 }, {"C2", 5 }, {"C3", 5 }, {"C4", 5 },
+                    {"D1", 5 }, {"D2", 5 }, {"D3", 5 }, {"D4", 5 },
+                };
+                return vendingMachineSlots;
+            }
+        }
 
         public void Restock(Dictionary<string, int> vendingMachineStock)
         {
@@ -37,7 +45,7 @@ namespace Capstone
             item.PrintItemMessage(item.ItemType);
         }
 
-        
+
         private const decimal dollarValue = 1m;
         private const decimal quarterValue = .25M;
         private const decimal dimeValue = .10M;
@@ -88,5 +96,5 @@ namespace Capstone
         }
 
     }
-    
+
 }

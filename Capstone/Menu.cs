@@ -8,6 +8,7 @@ namespace Capstone
 
     public class Menu
     {
+        VendingMachine vendoMatic = new VendingMachine();
         public bool MainMenu()
         {
 
@@ -57,14 +58,13 @@ namespace Capstone
             foreach (KeyValuePair<string, string> kvp in inventory.GoodsKeyDictionary)
             {
                 Item item = new Item(kvp.Key);
-                VendingMachine vendoMatic = new VendingMachine();
                 Console.WriteLine($"{kvp.Key}] {kvp.Value} - ${item.ItemPrice}  Available: {vendoMatic.VendingMachineStock[kvp.Key]}");
 
             }
         }
         public void PurchaseItems()
         {
-            VendingMachine vendoMatic = new VendingMachine();
+            
             decimal currentBalance = 0.0M;
             Money userMoney = new Money(currentBalance);
 
