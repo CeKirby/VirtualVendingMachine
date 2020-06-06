@@ -16,13 +16,7 @@ namespace CapstoneTests
             string expectedReturn = @"..\..\..\..\vendingmachine.csv";
             Assert.AreEqual(expectedReturn, csv.InputFile);
         }
-        //[TestMethod]
-        //public void asdaaa()
-        //{
-        //    Inventory sddff = new Inventory();
-        //    string expectedReturn = "";
-        //    Assert.AreEqual(expectedReturn, sddff.DisplayItems());
-        //}
+        //tested the only method available to test to my knowlege.
     }
 
 

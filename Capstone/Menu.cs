@@ -75,7 +75,7 @@ namespace Capstone
             {
                 Console.WriteLine("Please insert money in whole dollars($1, $2, $5, or $10)");
                 string currentMoneyProvidedString = Console.ReadLine();
-                decimal newCurrentMoneyProvided = decimal.Parse(currentMoneyProvidedString);
+                decimal newCurrentMoneyProvided = int.Parse(currentMoneyProvidedString);
                 currentBalance = currentBalance + newCurrentMoneyProvided;
                 Console.WriteLine("Current money provided: " + "$" + currentBalance);
 
