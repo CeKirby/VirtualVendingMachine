@@ -5,7 +5,7 @@ using System.IO;
 
 namespace Capstone
 {
-    public abstract class Goods
+    public class Inventory
     {
 
         public string InputFile

@@ -15,7 +15,7 @@ namespace Capstone
 
         public void DisplayItems()//claire will fix
         {
-
+            //Display Vending Machine Items
             Console.WriteLine();
             //if quantity = 0 Console.WriteLine("SOLD OUT")
             //Return to MainMenu

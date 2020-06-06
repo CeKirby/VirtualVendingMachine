@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Capstone
 {
-    public class Item : Goods
+    public class Item
     {
         public Item (string itemID)
         {
@@ -16,7 +16,8 @@ namespace Capstone
         {
             get
             {
-                return GoodsKeyDictionary[ItemID];
+                Inventory inventory = new Inventory();
+                return inventory.GoodsKeyDictionary[ItemID];
             }
            
         }
