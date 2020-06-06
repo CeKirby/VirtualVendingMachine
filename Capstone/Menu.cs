@@ -76,6 +76,11 @@ namespace Capstone
                 Console.WriteLine("Please insert money in whole dollars($1, $2, $5, or $10)");
                 string currentMoneyProvidedString = Console.ReadLine();
                 decimal newCurrentMoneyProvided = decimal.Parse(currentMoneyProvidedString);
+                if (newCurrentMoneyProvided % 1 != 0)
+                {
+                    Console.WriteLine("This VendoMatic only accepts whole bills");
+                    PurchaseItems();
+                }
                 currentBalance = currentBalance + newCurrentMoneyProvided;
                 Console.WriteLine("Current money provided: " + "$" + currentBalance);
 

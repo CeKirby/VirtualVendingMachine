@@ -15,7 +15,6 @@ namespace Capstone
            
             
             //Call Main Menu
-            //main.MainMenu();
             bool showMainMenu = true;
             while (showMainMenu)
             {
