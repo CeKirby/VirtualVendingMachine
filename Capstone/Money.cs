@@ -14,13 +14,13 @@ namespace Capstone
         public decimal currentMoneyProvided = 0.00M;
 
         public decimal CurrentBalance { get; set; }
-        public decimal FeedMoney(decimal money)
-        {
+        //public decimal FeedMoney(decimal money)
+        //{
 
-            decimal balance = 0.0M;
-            balance += money;
-            return balance;
-        }
+        //    decimal balance = 0.0M;
+        //    balance += money;
+        //    return balance;
+        //}
 
 
     }
