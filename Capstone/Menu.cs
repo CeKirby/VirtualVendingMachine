@@ -115,7 +115,7 @@ namespace Capstone
                 //Print item list
                 DisplayItems();
                 Console.WriteLine("Please enter the location code for your item.");
-                string enteredItemID = Console.ReadLine();
+                string enteredItemID = Console.ReadLine().ToUpper();
                 Item selectedItem = new Item(enteredItemID);
 
                 //check if entered Item ID exists
