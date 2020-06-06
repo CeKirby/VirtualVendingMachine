@@ -129,10 +129,14 @@ namespace Capstone
                 //    Console.WriteLine("The item you selected is Sold Out");
                 //    //return to Main Menu
                 //}
-                else
+                else if (currentBalance >= selectedItem.ItemPrice)
                 {
                     vendoMatic.DispenseItem(enteredItemID);
                     vendoMatic.DispenseItemPrintOut(enteredItemID, currentBalance);
+                }
+                else
+                {
+                    Console.WriteLine("You do not have enough money to make that purchase. Please input money.");
                 }
                 PurchaseItems();
 
