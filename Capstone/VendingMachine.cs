@@ -38,11 +38,13 @@ namespace Capstone
             int currentNumber = VendingMachineStock[itemId];
             VendingMachineStock[itemId] = --currentNumber;
         }
+        
         public void DispenseItemPrintOut(string itemID, decimal currentBalance)
         {
-            Item item = new Item(itemID);
+            Item item = new Item(itemID);            
             Console.WriteLine($"Dispensing your {item.ItemName}. It cost {item.ItemPrice}. You have a remaining balance of {currentBalance - item.ItemPrice}");
             item.PrintItemMessage(item.ItemType);
+            currentBalance = currentBalance - item.ItemPrice;
         }
 
 

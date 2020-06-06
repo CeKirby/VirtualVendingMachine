@@ -6,7 +6,7 @@ using System.IO;
 namespace Capstone
 {
 
-    public class Menu
+    public class Menu 
     {
         VendingMachine vendoMatic = new VendingMachine();
         public bool MainMenu()
