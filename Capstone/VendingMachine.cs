@@ -23,8 +23,10 @@ namespace Capstone
                 if (inventory.stock[kvp.Key] == 0)
                 {
                     Console.WriteLine($"{kvp.Key}] {kvp.Value} - ${item.ItemPrice}  Available: SOLD OUT");
+                } else
+                {
+                    Console.WriteLine($"{kvp.Key}] {kvp.Value} - ${item.ItemPrice}  Available: {inventory.stock[kvp.Key]}");
                 }
-                Console.WriteLine($"{kvp.Key}] {kvp.Value} - ${item.ItemPrice}  Available: {inventory.stock[kvp.Key]}");
 
             }
         }
