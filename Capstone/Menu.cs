@@ -62,7 +62,7 @@ namespace Capstone
 
             }
         }
-                decimal currentBalance = 0.00M;
+        decimal currentBalance = 0.00M;
         public void PurchaseItems()
         {
             VendingMachine vendoMatic = new VendingMachine();
@@ -130,7 +130,7 @@ namespace Capstone
                 //    //return to Main Menu
                 //}
                 else if (currentBalance >= selectedItem.ItemPrice)
-                {
+                {                    
                     vendoMatic.DispenseItem(enteredItemID);
                     vendoMatic.DispenseItemPrintOut(enteredItemID, currentBalance);
                 }
@@ -138,6 +138,7 @@ namespace Capstone
                 {
                     Console.WriteLine("You do not have enough money to make that purchase. Please input money.");
                 }
+                currentBalance = currentBalance - selectedItem.ItemPrice;
                 PurchaseItems();
 
             }
