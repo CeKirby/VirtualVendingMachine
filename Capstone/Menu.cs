@@ -8,11 +8,6 @@ namespace Capstone
 
     public class Menu
     {
-        public decimal currentMoneyProvided = 0.00M;
-        public decimal currentBalance = 0.00M;
-
-
-
         public bool MainMenu()
         {
 
@@ -37,8 +32,8 @@ namespace Capstone
                     return true;
                 case "4":
                     Menu hiddenMenu = new Menu();
-                    hiddenMenu.UserHiddenMenu();
                     Console.WriteLine("Hidden menu");
+                    hiddenMenu.UserHiddenMenu();
                     Console.WriteLine();
                     Console.WriteLine("---~*~---");
                     Console.WriteLine();
@@ -49,6 +44,11 @@ namespace Capstone
                 default:
                     return true;
             }
+        }
+
+        private void UserHiddenMenu()
+        {
+            throw new NotImplementedException();
         }
 
         public void DisplayItems()
@@ -64,7 +64,9 @@ namespace Capstone
         }
         public void PurchaseItems()
         {
-            VendingMachine vendingMachine = new VendingMachine();
+            VendingMachine vendoMatic = new VendingMachine();
+            decimal currentBalance = 0.0M;
+            Money userMoney = new Money(currentBalance);
 
             //creates path to log purchases
             string outputDirectory = @"..\..\..\..";
@@ -78,7 +80,7 @@ namespace Capstone
             Console.WriteLine("(2) Select Product");
             Console.WriteLine("(3) Finish Transaction");
             Console.WriteLine();
-            Console.WriteLine("Current money provided: " + currentBalance);
+            Console.WriteLine("Current money provided: " + userMoney.CurrentBalance);
             string userInputPurchase = Console.ReadLine();
 
             if (userInputPurchase == "1") //Feed Money
@@ -90,41 +92,42 @@ namespace Capstone
                 {
                     using (StreamWriter sw = new StreamWriter(outputFullPath, true))
                     {
-                        currentBalance = newCurrentMoneyProvided + currentBalance;
-                        sw.WriteLine(now.ToString() + " " + "FEED MONEY: " + "$" + newCurrentMoneyProvided + " " + "$" + currentBalance);
+                        userMoney.CurrentBalance += newCurrentMoneyProvided;
+                        sw.WriteLine(now.ToString() + " " + "FEED MONEY: " + "$" + newCurrentMoneyProvided + " " + "$" + userMoney.CurrentBalance);
 
                     }
                 }
                 catch (Exception e)
                 {
                     Console.WriteLine("There was an error");
+                    Console.WriteLine(e.Message);
                     //return to PurchaseItems menu and rerun
                 }
                 PurchaseItems();
             }
             else if (userInputPurchase == "2") //Select Product
             {
-                //TODOdisplay Goods Dictionary with item name and location (A1)
-
+                //Print item list
+                DisplayItems();
                 Console.WriteLine("Please enter the location code for your item.");
                 string enteredItemID = Console.ReadLine();
                 Item selectedItem = new Item(enteredItemID);
+
                 //check if entered Item ID exists
                 if (!selectedItem.ItemExists(enteredItemID))
                 {
                     Console.WriteLine("You have entered an invalid item code");
                     //return to Main Menu
                 }
-                else if (selectedItem.ItemExists(enteredItemID) /*&& item is SOLDOUT*/)
-                {
-                    Console.WriteLine("The item you selected is Sold Out");
-                    //return to Main Menu
-                }
+                //else if (selectedItem.ItemExists(enteredItemID) /*&& item is SOLDOUT*/)
+                //{
+                //    Console.WriteLine("The item you selected is Sold Out");
+                //    //return to Main Menu
+                //}
                 else
                 {
-                    //TODO call method DispenseItem
-                    vendingMachine.DispenseItemPrintOut(enteredItemID, currentBalance);
-                    selectedItem.PrintItemMessage(selectedItem.ItemType);
+                    vendoMatic.DispenseItem(enteredItemID);
+                    vendoMatic.DispenseItemPrintOut(enteredItemID, currentBalance);
                 }
 
             }
@@ -133,7 +136,7 @@ namespace Capstone
                 //call method GiveChange
                 Money money = new Money(currentBalance);
                 decimal changeNeeded = money.CurrentBalance;
-                Console.WriteLine(money.GiveChange(changeNeeded));
+                Console.WriteLine(vendoMatic.GiveChange(changeNeeded));
                 try
                 {
                     using (StreamWriter sw = new StreamWriter(outputFullPath, true))
@@ -145,6 +148,7 @@ namespace Capstone
                 catch (Exception e)
                 {
                     Console.WriteLine("There was an error");
+                    Console.WriteLine(e.Message);
                     //return to PurchaseItems menu and rerun
                 }
                 //Return to Main Menu

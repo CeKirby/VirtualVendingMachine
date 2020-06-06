@@ -25,7 +25,19 @@ namespace Capstone
             }
         }
 
+        public void DispenseItem(string itemId)
+        {
+            int currentNumber = VendingMachineStock[itemId];
+            VendingMachineStock[itemId] = --currentNumber;
+        }
+        public void DispenseItemPrintOut(string itemID, decimal currentBalance)
+        {
+            Item item = new Item(itemID);
+            Console.WriteLine($"Dispensing your {item.ItemName}. It cost {item.ItemPrice}. You have a remaining balance of {currentBalance}");
+            item.PrintItemMessage(item.ItemType);
+        }
 
+        
         private const decimal dollarValue = 1m;
         private const decimal quarterValue = .25M;
         private const decimal dimeValue = .10M;
@@ -37,6 +49,7 @@ namespace Capstone
         private int nickelAmount = 0;
         public string GiveChange(decimal change)
         {
+            Money money = new Money(change);
             decimal totalChange = change;
 
             //variables
@@ -50,7 +63,7 @@ namespace Capstone
             nickelAmount = (int)(change / nickelValue);
             change -= nickelAmount * nickelValue;
 
-            //print out of change 
+            //print-out of change 
             if (quarterAmount == 0 && nickelAmount == 0 && dimeAmount == 0)
             {
                 result = $"Your Change Is {dollarAmount} Dollar(s) For a Total of ${totalChange}.";
@@ -74,11 +87,6 @@ namespace Capstone
             return result;
         }
 
-        public void DispenseItemPrintOut(string itemID, decimal currentBalance)
-        {
-            Item item = new Item(itemID);
-            Console.WriteLine($"Dispensing your {item.ItemName}. It cost {item.ItemPrice}. You have a remaining balance of {currentBalance}");
-        }
     }
     
 }
