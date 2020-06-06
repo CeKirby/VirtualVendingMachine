@@ -120,12 +120,13 @@ namespace Capstone
                 {                    
                     vendoMatic.DispenseItem(enteredItemID);
                     vendoMatic.DispenseItemPrintOut(enteredItemID, currentBalance);
+                    currentBalance = currentBalance - selectedItem.ItemPrice;
                 }
                 else
                 {
                     Console.WriteLine("You do not have enough money to make that purchase. Please input money.");
                 }
-                currentBalance = currentBalance - selectedItem.ItemPrice;
+                
                 PurchaseItems();
 
             }
