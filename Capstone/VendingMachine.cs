@@ -10,35 +10,45 @@ namespace Capstone
 
 
 
-        public Dictionary<string, int> VendingMachineStock
-        {
-            get
-            {
-                Dictionary<string, int> vendingMachineSlots = new Dictionary<string, int>
-                {
-                    {"A1", 5 }, {"A2", 5 }, {"A3", 5 }, {"A4", 5 },
-                    {"B1", 5 }, {"B2", 5 }, {"B3", 5 }, {"B4", 5 },
-                    {"C1", 5 }, {"C2", 5 }, {"C3", 5 }, {"C4", 5 },
-                    {"D1", 5 }, {"D2", 5 }, {"D3", 5 }, {"D4", 5 },
-                };
-                return vendingMachineSlots;
-            }
-        }
+        //public Dictionary<string, int> VendingMachineStock
+        //{
+        //    get
+        //    {
+        //        Dictionary<string, int> vendingMachineSlots = new Dictionary<string, int>
+        //        {
+        //            {"A1", 0 }, {"A2", 0 }, {"A3", 0 }, {"A4", 0 },
+        //            {"B1", 0 }, {"B2", 0 }, {"B3", 0 }, {"B4", 0 },
+        //            {"C1", 0 }, {"C2", 0 }, {"C3", 0 }, {"C4", 0 },
+        //            {"D1", 0 }, {"D2", 0 }, {"D3", 0 }, {"D4", 0 },
+        //        };
+        //        return vendingMachineSlots;
+        //    }
+        //}
 
-        public void Restock(Dictionary<string, int> vendingMachineStock)
-        {
-            foreach (KeyValuePair<string, int> kvp in vendingMachineStock)
-            {
-                vendingMachineStock.Add(kvp.Key, 5);
-            }
-        }
+        //public void Restock(Dictionary<string, int> vendingMachineStock)
+        //{
+        //    foreach (KeyValuePair<string, string> kvp in vendingMachineInventory.GoodsKeyDictionary)
+        //    {
+        //        vendingMachineStock.Add(kvp.Key, 5);
+        //    }
 
+        //}
+        Inventory inventory = new Inventory();
         public void DispenseItem(string itemId)
         {
-            int currentNumber = VendingMachineStock[itemId];
-            VendingMachineStock[itemId] = --currentNumber;
+            int currentNumber = inventory.stock[itemId];
+            inventory.stock[itemId] = --currentNumber;
         }
-        
+        public void DisplayItems()
+        {
+            
+            foreach (KeyValuePair<string, string> kvp in inventory.GoodsKeyDictionary)
+            {
+                Item item = new Item(kvp.Key);
+                Console.WriteLine($"{kvp.Key}] {kvp.Value} - ${item.ItemPrice}  Available: {inventory.stock[kvp.Key]}");
+
+            }
+        }
         public void DispenseItemPrintOut(string itemID, decimal currentBalance)
         {
             Item item = new Item(itemID);            

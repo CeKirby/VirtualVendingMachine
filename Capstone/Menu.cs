@@ -21,20 +21,17 @@ namespace Capstone
             switch (userInputMain)
             {
                 case "1":
-                    Menu displayItems = new Menu();
-                    displayItems.DisplayItems();
+                    vendoMatic.DisplayItems();
                     Console.WriteLine();
                     Console.WriteLine("---~*~---");
                     Console.WriteLine();
                     return true;
                 case "2":
-                    Menu purchaseItems = new Menu();
-                    purchaseItems.PurchaseItems();
+                    PurchaseItems();
                     return true;
                 case "4":
-                    Menu hiddenMenu = new Menu();
                     Console.WriteLine("Hidden menu");
-                    hiddenMenu.UserHiddenMenu();
+                    UserHiddenMenu();
                     Console.WriteLine();
                     Console.WriteLine("---~*~---");
                     Console.WriteLine();
@@ -52,21 +49,11 @@ namespace Capstone
             throw new NotImplementedException();
         }
 
-        public void DisplayItems()
-        {
-            Inventory inventory = new Inventory();
-            foreach (KeyValuePair<string, string> kvp in inventory.GoodsKeyDictionary)
-            {
-                Item item = new Item(kvp.Key);
-                Console.WriteLine($"{kvp.Key}] {kvp.Value} - ${item.ItemPrice}  Available: {vendoMatic.VendingMachineStock[kvp.Key]}");
-
-            }
-        }
+        
         decimal currentBalance = 0.00M;
         public void PurchaseItems()
         {
-            VendingMachine vendoMatic = new VendingMachine();
-            //decimal currentBalance = 0.00M;
+            
             Money userMoney = new Money(currentBalance);
 
             //creates path to log purchases
@@ -113,7 +100,7 @@ namespace Capstone
             else if (userInputPurchase == "2") //Select Product
             {
                 //Print item list
-                DisplayItems();
+                vendoMatic.DisplayItems();
                 Console.WriteLine("Please enter the location code for your item.");
                 string enteredItemID = Console.ReadLine().ToUpper();
                 Item selectedItem = new Item(enteredItemID);
