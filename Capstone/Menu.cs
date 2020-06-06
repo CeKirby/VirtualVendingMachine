@@ -118,7 +118,7 @@ namespace Capstone
                 }
                 else if (selectedItem.ItemExists(enteredItemID) && vendoMatic.IsOutOfStock(enteredItemID))
                 {
-                    Console.WriteLine("The item you selected is Sold Out");
+                    Console.WriteLine("The item you selected is SOLD OUT");
                     //return to Main Menu
                 }
                 else if (currentBalance >= selectedItem.ItemPrice)

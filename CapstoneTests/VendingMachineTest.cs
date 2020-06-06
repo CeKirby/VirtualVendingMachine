@@ -40,6 +40,13 @@ namespace CapstoneTests
             Assert.AreEqual(expectedReturn, returnMoney.GiveChange(6.90m));
         }
         [TestMethod]
+        public void NegativeMoney()
+        {
+            VendingMachine returnMoney = new VendingMachine();
+            string expectedReturn = "No Change For You!!!";
+            Assert.AreEqual(expectedReturn, returnMoney.GiveChange(-6.90m));
+        }
+        [TestMethod]
         public void OutOfStock()
         {
             VendingMachine tryAgainLater = new VendingMachine();
