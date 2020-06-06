@@ -155,8 +155,7 @@ namespace Capstone
                     //return to PurchaseItems menu and rerun
                 }
                 //Return to Main Menu
-                Menu main = new Menu();
-                main.MainMenu();
+                MainMenu();
 
             }
         }
