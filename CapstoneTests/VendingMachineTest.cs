@@ -5,17 +5,12 @@ using System.Collections.Generic;
 using System.Text;
 
 namespace CapstoneTests
-{
+{/// <summary>
+/// all non void methods tested 
+/// </summary>
     [TestClass]
     public class VendingMachineTest
     {
-        //[TestMethod]
-        //public void Dispense()
-        //{
-        //    VendingMachine selectItem = new VendingMachine();
-        //    string expectedReturn = "D2";
-        //    Assert.AreEqual(expectedReturn, selectItem.DispenseItemPrintOut()
-        //}
         [TestMethod]
         public void RefundEvenDollors()
         {
