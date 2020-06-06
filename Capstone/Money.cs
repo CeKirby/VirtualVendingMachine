@@ -17,7 +17,8 @@ namespace Capstone
         public decimal FeedMoney(decimal money)
         {
 
-            decimal balance += money;
+            decimal balance = 0.0M;
+            balance += money;
             return balance;
         }
         private const decimal dollarValue = 1m;

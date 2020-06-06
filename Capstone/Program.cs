@@ -4,69 +4,24 @@ using System.IO;
 
 namespace Capstone
 {
-    public class Program : PotentialOptions
+    public class Program : Menu
     {
 
         static void Main(string[] args)
         {
+            Console.WriteLine("Welcome to the Vendo-Matic 800!");
+            Menu main = new Menu();
+            VendingMachine vendoMatic = new VendingMachine();
+            
+            //Call Main Menu
+            main.MainMenu();
             bool showMainMenu = true;
-
             while (showMainMenu)
             {
-                showMainMenu = MainMenu();
+                showMainMenu = main.MainMenu();
             }
+
         }
-        public static bool MainMenu()
-        {
-            Console.WriteLine("Welcome to the Vendo-Matic 800!");
-            Console.WriteLine("(1) Display Vending Machine Items");
-            Console.WriteLine("(2) Purchase");
-            Console.WriteLine("(3) Exit");
-            Console.WriteLine("Please enter the number of your choice: ");
-            string userInputMain = Console.ReadLine();
-
-            switch (userInputMain)
-            {
-                case "1":
-                    PotentialOptions displayItems = new PotentialOptions();
-                    displayItems.DisplayItems();
-                    return true;
-                case "2":
-                    PotentialOptions purchaseItems = new PotentialOptions();
-                    purchaseItems.PurchaseItems();
-                    return true;
-                case "4":
-                    PotentialOptions hiddenMenu = new PotentialOptions();
-                    hiddenMenu.UserHiddenMenu();
-                    Console.WriteLine("Hidden menu");
-                    return true;
-                case "3":
-                    Console.WriteLine("Thank you! Please come again!");
-                    return false;
-                default:
-                    return true;
-            }
-        }
-
-        //if (userInputMain == "1")
-        //{
-        //    PotenitialOptions displayItems = new PotenitialOptions();
-        //    displayItems.DisplayItems();
-        //}
-        //else if (userInputMain == "2")
-        //{
-        //    PotenitialOptions purchaseItems = new PotenitialOptions();
-        //    purchaseItems.PurchaseItems();
-
-        //}
-        //else if (userInputMain == "4")
-        //{
-        //    PotenitialOptions hiddenMenu = new PotenitialOptions();
-        //    hiddenMenu.UserHiddenMenu();
-        //    Console.WriteLine("Hidden menu");
-        //}            
-        //else
-        //    Console.WriteLine("Thank you! Please come again!");
 
     }
 }

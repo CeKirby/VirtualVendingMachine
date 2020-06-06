@@ -25,7 +25,8 @@ namespace Capstone
         {
             get
             {
-                return ItemPriceDictionary[ItemName];
+                Inventory inventory = new Inventory();
+                return inventory.ItemPriceDictionary[ItemName];
             }
         }
         public string ItemType
@@ -72,7 +73,8 @@ namespace Capstone
 
         public bool ItemExists(string itemID)
         {
-            return GoodsKeyDictionary.ContainsKey(itemID);
+            Inventory inventory = new Inventory();
+            return inventory.GoodsKeyDictionary.ContainsKey(itemID);
         }
 
     }

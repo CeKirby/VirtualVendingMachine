@@ -6,32 +6,74 @@ using System.IO;
 namespace Capstone
 {
 
-    public class PotentialOptions
+    public class Menu
     {
         public decimal currentMoneyProvided = 0.00M;
         public decimal currentBalance = 0.00M;
 
-        bool showMainMenu = true;
 
-        public void DisplayItems()//claire will fix
+
+        public bool MainMenu()
         {
-            //Display Vending Machine Items
-            Console.WriteLine();
-            //if quantity = 0 Console.WriteLine("SOLD OUT")
-            //Return to MainMenu
+
+            Console.WriteLine("(1) Display Vending Machine Items");
+            Console.WriteLine("(2) Purchase");
+            Console.WriteLine("(3) Exit");
+            Console.WriteLine("Please enter the number of your choice: ");
+            string userInputMain = Console.ReadLine();
+
+            switch (userInputMain)
+            {
+                case "1":
+                    Menu displayItems = new Menu();
+                    displayItems.DisplayItems();
+                    Console.WriteLine();
+                    Console.WriteLine("---~*~---");
+                    Console.WriteLine();
+                    return true;
+                case "2":
+                    Menu purchaseItems = new Menu();
+                    purchaseItems.PurchaseItems();
+                    return true;
+                case "4":
+                    Menu hiddenMenu = new Menu();
+                    hiddenMenu.UserHiddenMenu();
+                    Console.WriteLine("Hidden menu");
+                    Console.WriteLine();
+                    Console.WriteLine("---~*~---");
+                    Console.WriteLine();
+                    return true;
+                case "3":
+                    Console.WriteLine("Thank you! Please come again!");
+                    return false;
+                default:
+                    return true;
+            }
+        }
+
+        public void DisplayItems()
+        {
+            Inventory inventory = new Inventory();
+            foreach (KeyValuePair<string, string> kvp in inventory.GoodsKeyDictionary)
+            {
+                Item item = new Item(kvp.Key);
+                VendingMachine vendoMatic = new VendingMachine();
+                Console.WriteLine($"{kvp.Key}] {kvp.Value} - ${item.ItemPrice}  Available: {vendoMatic.VendingMachineStock[kvp.Key]}");
+
+            }
         }
         public void PurchaseItems()
         {
             VendingMachine vendingMachine = new VendingMachine();
-            
+
             //creates path to log purchases
             string outputDirectory = @"..\..\..\..";
             string outputFileName = "Log.txt";
             string outputFullPath = Path.Combine(outputDirectory, outputFileName);
             DateTime now = DateTime.Now;
-            
 
-           //Purchase Items Menu
+
+            //Purchase Items Menu
             Console.WriteLine("(1) Feed Money");
             Console.WriteLine("(2) Select Product");
             Console.WriteLine("(3) Finish Transaction");
@@ -72,11 +114,13 @@ namespace Capstone
                 {
                     Console.WriteLine("You have entered an invalid item code");
                     //return to Main Menu
-                } else if (selectedItem.ItemExists(enteredItemID) /*&& item is SOLDOUT*/)
+                }
+                else if (selectedItem.ItemExists(enteredItemID) /*&& item is SOLDOUT*/)
                 {
                     Console.WriteLine("The item you selected is Sold Out");
                     //return to Main Menu
-                } else
+                }
+                else
                 {
                     //TODO call method DispenseItem
                     vendingMachine.DispenseItemPrintOut(enteredItemID, currentBalance);
@@ -103,49 +147,16 @@ namespace Capstone
                     Console.WriteLine("There was an error");
                     //return to PurchaseItems menu and rerun
                 }
-                //should return to Main Menu
-                bool MainMenu()
-                {
-                    Console.WriteLine("Welcome to the Vendo-Matic 800!");
-                    Console.WriteLine("(1) Display Vending Machine Items");
-                    Console.WriteLine("(2) Purchase");
-                    Console.WriteLine("(3) Exit");
-                    Console.WriteLine("Please enter the number of your choice: ");
-                    string userInputMain = Console.ReadLine();
+                //Return to Main Menu
+                Menu main = new Menu();
+                main.MainMenu();
 
-                    switch (userInputMain)
-                    {
-                        case "1":
-                            PotentialOptions displayItems = new PotentialOptions();
-                            displayItems.DisplayItems();
-                            return true;
-                        case "2":
-                            PotentialOptions purchaseItems = new PotentialOptions();
-                            purchaseItems.PurchaseItems();
-                            return true;
-                        case "4":
-                            PotentialOptions hiddenMenu = new PotentialOptions();
-                            hiddenMenu.UserHiddenMenu();
-                            Console.WriteLine("Hidden menu");
-                            return true;
-                        case "3":
-                            Console.WriteLine("Thank you! Please come again!");
-                            return false;
-                        default:
-                            return true;
-                    }
-                }
             }
         }
-        public void UserExits()
-        {
-            Console.WriteLine("Thank you! Please come again!");
-        }
-        public void UserHiddenMenu()
-        {
-            Console.WriteLine("Hidden menu");
-        }
+
+       
     }
 }
+
 
 

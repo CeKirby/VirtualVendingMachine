@@ -17,7 +17,7 @@ namespace Capstone
                 return Path.Combine(directory, filename);
             }
         }
-        public void DisplayVendingMachineItems()
+        public void DisplayItems()
         {
 
             foreach (KeyValuePair<string, string> kvp in GoodsKeyDictionary)
@@ -26,6 +26,7 @@ namespace Capstone
                 Console.WriteLine($"{kvp.Key}] {kvp.Value} - ${item.ItemPrice}  Available: itemsLeft");
 
             }
+            
         }
 
         //holds ID and Name
@@ -48,18 +49,18 @@ namespace Capstone
             }
         }
         //Holds Name and Price 
-        public Dictionary<string, int> ItemPriceDictionary
+        public Dictionary<string, decimal> ItemPriceDictionary
         {
             get
             {
-                Dictionary<string, int> PriceDictionary = new Dictionary<string, int>();
+                Dictionary<string, decimal> PriceDictionary = new Dictionary<string, decimal>();
                 using (StreamReader sr = new StreamReader(InputFile))
                 {
                     while (!sr.EndOfStream)
                     {
                         string line = sr.ReadLine();
                         string[] goodsArray = line.Split("|");
-                        PriceDictionary.Add(goodsArray[1], int.Parse(goodsArray[2]));
+                        PriceDictionary.Add(goodsArray[1], decimal.Parse(goodsArray[2]));
 
                     }
                 }
