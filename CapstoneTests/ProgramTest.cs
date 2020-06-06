@@ -16,8 +16,15 @@ namespace CapstoneTests
         //    bool expectedReturn = true;
         //    Assert.AreEqual(expectedReturn, start.MainMenu());
         //}
-
         
+        //[TestMethod]
+        //public void ItemExists()
+        //{
+        //    Item isItThere = new Item(itemID);
+        //    bool expectedResult = true;
+        //    Assert.AreEqual(expectedResult, isItThere.ItemID);
+        //}
+
 
 
 

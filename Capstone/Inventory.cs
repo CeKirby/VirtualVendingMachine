@@ -18,17 +18,17 @@ namespace Capstone
                 return Path.Combine(directory, filename);
             }
         }
-        public void DisplayItems()
-        {
+        //public void DisplayItems()
+        //{
 
-            foreach (KeyValuePair<string, string> kvp in GoodsKeyDictionary)
-            {
-                Item item = new Item(kvp.Key);
-                Console.WriteLine($"{kvp.Key}] {kvp.Value} - ${item.ItemPrice}  Available: {stock[kvp.Key]}");
+        //    foreach (KeyValuePair<string, string> kvp in GoodsKeyDictionary)
+        //    {
+        //        Item item = new Item(kvp.Key);
+        //        Console.WriteLine($"{kvp.Key}] {kvp.Value} - ${item.ItemPrice}  Available: {stock[kvp.Key]}");
 
-            }
+        //    }
             
-        }
+        //}
 
         public Dictionary<string, int> stock = new Dictionary<string, int>
             {

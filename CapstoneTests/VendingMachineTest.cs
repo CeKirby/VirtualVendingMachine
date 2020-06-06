@@ -39,5 +39,12 @@ namespace CapstoneTests
             string expectedReturn = "Your Change Is 6 Dollar(s) 3 Quarter(s), 1 Dime(s) and 1 Nickel(s) For a Total of $6.90.";
             Assert.AreEqual(expectedReturn, returnMoney.GiveChange(6.90m));
         }
+        [TestMethod]
+        public void OutOfStock()
+        {
+            VendingMachine tryAgainLater = new VendingMachine();
+            bool expectedReturn = false;
+            Assert.AreEqual(expectedReturn, tryAgainLater.IsOutOfStock("A1"));
+        }
     }
 }

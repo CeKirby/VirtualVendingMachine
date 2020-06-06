@@ -83,7 +83,7 @@ namespace Capstone
                 }
                 currentBalance = currentBalance + newCurrentMoneyProvided;
                 Console.WriteLine("Current money provided: " + "$" + currentBalance);
-
+                
                 try
                 {
                     using (StreamWriter sw = new StreamWriter(outputFullPath, true))
