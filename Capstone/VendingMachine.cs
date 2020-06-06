@@ -74,7 +74,11 @@ namespace Capstone
             change -= nickelAmount * nickelValue;
 
             //print-out of change 
-            if (quarterAmount == 0 && nickelAmount == 0 && dimeAmount == 0)
+            if (totalChange < 0)
+            {
+                result = "No Change For You!!!";
+            }
+            else if (quarterAmount == 0 && nickelAmount == 0 && dimeAmount == 0)
             {
                 result = $"Your Change Is {dollarAmount} Dollar(s) For a Total of ${totalChange}.";
             }
