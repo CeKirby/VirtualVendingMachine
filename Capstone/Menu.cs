@@ -75,10 +75,14 @@ namespace Capstone
             {
                 Console.WriteLine("Please insert money in whole dollars($1, $2, $5, or $10)");
                 string currentMoneyProvidedString = Console.ReadLine();
-                decimal newCurrentMoneyProvided = int.Parse(currentMoneyProvidedString);
+                decimal newCurrentMoneyProvided = decimal.Parse(currentMoneyProvidedString);
+                
+                if (newCurrentMoneyProvided % 1 != 0)
+                {
+                    Console.WriteLine("Please enter whole numbers");
+                    PurchaseItems();
+                }                
                 currentBalance = currentBalance + newCurrentMoneyProvided;
-                Console.WriteLine("Current money provided: " + "$" + currentBalance);
-
                 try
                 {
                     using (StreamWriter sw = new StreamWriter(outputFullPath, true))
