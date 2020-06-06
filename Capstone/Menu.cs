@@ -62,10 +62,11 @@ namespace Capstone
 
             }
         }
+                decimal currentBalance = 0.00M;
         public void PurchaseItems()
         {
-            
-            decimal currentBalance = 0.0M;
+            VendingMachine vendoMatic = new VendingMachine();
+            //decimal currentBalance = 0.00M;
             Money userMoney = new Money(currentBalance);
 
             //creates path to log purchases
@@ -80,7 +81,7 @@ namespace Capstone
             Console.WriteLine("(2) Select Product");
             Console.WriteLine("(3) Finish Transaction");
             Console.WriteLine();
-            Console.WriteLine("Current money provided: " + userMoney.CurrentBalance);
+            //Console.WriteLine("Current money provided: " + "$" + currentBalance);
             string userInputPurchase = Console.ReadLine();
 
             if (userInputPurchase == "1") //Feed Money
@@ -88,13 +89,17 @@ namespace Capstone
                 Console.WriteLine("Please insert money in whole dollars($1, $2, $5, or $10)");
                 string currentMoneyProvidedString = Console.ReadLine();
                 decimal newCurrentMoneyProvided = decimal.Parse(currentMoneyProvidedString);
+                currentBalance = currentBalance + newCurrentMoneyProvided;
+                Console.WriteLine("Current money provided: " + "$" + currentBalance);
+
                 try
                 {
                     using (StreamWriter sw = new StreamWriter(outputFullPath, true))
                     {
-                        userMoney.CurrentBalance += newCurrentMoneyProvided;
-                        sw.WriteLine(now.ToString() + " " + "FEED MONEY: " + "$" + newCurrentMoneyProvided + " " + "$" + userMoney.CurrentBalance);
-
+                        //currentBalance = currentBalance + newCurrentMoneyProvided;
+                        //userMoney.CurrentBalance += newCurrentMoneyProvided;
+                        sw.WriteLine(now.ToString() + " " + "FEED MONEY: " + "$" + newCurrentMoneyProvided + " " + "$" + currentBalance);
+                        //Console.WriteLine("Current money provided: " + currentBalance);
                     }
                 }
                 catch (Exception e)
@@ -129,6 +134,7 @@ namespace Capstone
                     vendoMatic.DispenseItem(enteredItemID);
                     vendoMatic.DispenseItemPrintOut(enteredItemID, currentBalance);
                 }
+                PurchaseItems();
 
             }
             else if (userInputPurchase == "3") //Finish Transaction
