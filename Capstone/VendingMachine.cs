@@ -8,20 +8,11 @@ namespace Capstone
     public class VendingMachine
     {
 
-
-        //public void Restock(Dictionary<string, int> vendingMachineStock)
-        //{
-        //    foreach (KeyValuePair<string, string> kvp in vendingMachineInventory.GoodsKeyDictionary)
-        //    {
-        //        vendingMachineStock.Add(kvp.Key, 5);
-        //    }
-
-        //}
         Inventory inventory = new Inventory();
         public void DispenseItem(string itemId)
         {
-            int currentNumber = inventory.stock[itemId];
-            inventory.stock[itemId] = --currentNumber;
+                int currentNumber = inventory.stock[itemId];
+                inventory.stock[itemId] = --currentNumber;
         }
         public void DisplayItems()
         {
@@ -29,9 +20,17 @@ namespace Capstone
             foreach (KeyValuePair<string, string> kvp in inventory.GoodsKeyDictionary)
             {
                 Item item = new Item(kvp.Key);
+                if (inventory.stock[kvp.Key] == 0)
+                {
+                    Console.WriteLine($"{kvp.Key}] {kvp.Value} - ${item.ItemPrice}  Available: SOLD OUT");
+                }
                 Console.WriteLine($"{kvp.Key}] {kvp.Value} - ${item.ItemPrice}  Available: {inventory.stock[kvp.Key]}");
 
             }
+        }
+        public bool IsOutOfStock(string itemID)
+        {
+            return (inventory.stock[itemID] < 1);
         }
         public void DispenseItemPrintOut(string itemID, decimal currentBalance)
         {

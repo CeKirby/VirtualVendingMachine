@@ -111,11 +111,11 @@ namespace Capstone
                     Console.WriteLine("You have entered an invalid item code");
                     //return to Main Menu
                 }
-                //else if (selectedItem.ItemExists(enteredItemID) /*&& item is SOLDOUT*/)
-                //{
-                //    Console.WriteLine("The item you selected is Sold Out");
-                //    //return to Main Menu
-                //}
+                else if (selectedItem.ItemExists(enteredItemID) && vendoMatic.IsOutOfStock(enteredItemID))
+                {
+                    Console.WriteLine("The item you selected is Sold Out");
+                    //return to Main Menu
+                }
                 else if (currentBalance >= selectedItem.ItemPrice)
                 {                    
                     vendoMatic.DispenseItem(enteredItemID);
