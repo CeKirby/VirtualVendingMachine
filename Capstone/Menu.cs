@@ -59,7 +59,6 @@ namespace Capstone
             {
                 Item item = new Item(kvp.Key);
                 Console.WriteLine($"{kvp.Key}] {kvp.Value} - ${item.ItemPrice}  Available: {vendoMatic.VendingMachineStock[kvp.Key]}");
-
             }
         }
         decimal currentBalance = 0.00M;
