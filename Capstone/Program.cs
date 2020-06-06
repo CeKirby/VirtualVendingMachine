@@ -12,9 +12,10 @@ namespace Capstone
             Console.WriteLine("Welcome to the Vendo-Matic 800!");
             Menu main = new Menu();
             VendingMachine vendoMatic = new VendingMachine();
+           
             
             //Call Main Menu
-            main.MainMenu();
+            //main.MainMenu();
             bool showMainMenu = true;
             while (showMainMenu)
             {

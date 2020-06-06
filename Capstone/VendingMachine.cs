@@ -8,37 +8,32 @@ namespace Capstone
     public class VendingMachine
     {
 
-
-
-        public Dictionary<string, int> VendingMachineStock
-        {
-            get
-            {
-                Dictionary<string, int> vendingMachineSlots = new Dictionary<string, int>
-                {
-                    {"A1", 5 }, {"A2", 5 }, {"A3", 5 }, {"A4", 5 },
-                    {"B1", 5 }, {"B2", 5 }, {"B3", 5 }, {"B4", 5 },
-                    {"C1", 5 }, {"C2", 5 }, {"C3", 5 }, {"C4", 5 },
-                    {"D1", 5 }, {"D2", 5 }, {"D3", 5 }, {"D4", 5 },
-                };
-                return vendingMachineSlots;
-            }
-        }
-
-        public void Restock(Dictionary<string, int> vendingMachineStock)
-        {
-            foreach (KeyValuePair<string, int> kvp in vendingMachineStock)
-            {
-                vendingMachineStock.Add(kvp.Key, 5);
-            }
-        }
-
+        Inventory inventory = new Inventory();
         public void DispenseItem(string itemId)
         {
-            int currentNumber = VendingMachineStock[itemId];
-            VendingMachineStock[itemId] = --currentNumber;
+                int currentNumber = inventory.stock[itemId];
+                inventory.stock[itemId] = --currentNumber;
         }
-        
+        public void DisplayItems()
+        {
+            
+            foreach (KeyValuePair<string, string> kvp in inventory.GoodsKeyDictionary)
+            {
+                Item item = new Item(kvp.Key);
+                if (inventory.stock[kvp.Key] == 0)
+                {
+                    Console.WriteLine($"{kvp.Key}] {kvp.Value} - ${item.ItemPrice}  Available: SOLD OUT");
+                } else
+                {
+                    Console.WriteLine($"{kvp.Key}] {kvp.Value} - ${item.ItemPrice}  Available: {inventory.stock[kvp.Key]}");
+                }
+
+            }
+        }
+        public bool IsOutOfStock(string itemID)
+        {
+            return (inventory.stock[itemID] < 1);
+        }
         public void DispenseItemPrintOut(string itemID, decimal currentBalance)
         {
             Item item = new Item(itemID);            
@@ -74,7 +69,11 @@ namespace Capstone
             change -= nickelAmount * nickelValue;
 
             //print-out of change 
-            if (quarterAmount == 0 && nickelAmount == 0 && dimeAmount == 0)
+            if (totalChange < 0)
+            {
+                result = "No Change For You!!!";
+            }
+            else if (quarterAmount == 0 && nickelAmount == 0 && dimeAmount == 0)
             {
                 result = $"Your Change Is {dollarAmount} Dollar(s) For a Total of ${totalChange}.";
             }

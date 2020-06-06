@@ -21,20 +21,17 @@ namespace Capstone
             switch (userInputMain)
             {
                 case "1":
-                    Menu displayItems = new Menu();
-                    displayItems.DisplayItems();
+                    vendoMatic.DisplayItems();
                     Console.WriteLine();
                     Console.WriteLine("---~*~---");
                     Console.WriteLine();
                     return true;
                 case "2":
-                    Menu purchaseItems = new Menu();
-                    purchaseItems.PurchaseItems();
+                    PurchaseItems();
                     return true;
                 case "4":
-                    Menu hiddenMenu = new Menu();
                     Console.WriteLine("Hidden menu");
-                    hiddenMenu.UserHiddenMenu();
+                    UserHiddenMenu();
                     Console.WriteLine();
                     Console.WriteLine("---~*~---");
                     Console.WriteLine();
@@ -52,20 +49,11 @@ namespace Capstone
             throw new NotImplementedException();
         }
 
-        public void DisplayItems()
-        {
-            Inventory inventory = new Inventory();
-            foreach (KeyValuePair<string, string> kvp in inventory.GoodsKeyDictionary)
-            {
-                Item item = new Item(kvp.Key);
-                Console.WriteLine($"{kvp.Key}] {kvp.Value} - ${item.ItemPrice}  Available: {vendoMatic.VendingMachineStock[kvp.Key]}");
-            }
-        }
+        
         decimal currentBalance = 0.00M;
         public void PurchaseItems()
         {
-            VendingMachine vendoMatic = new VendingMachine();
-            //decimal currentBalance = 0.00M;
+            
             Money userMoney = new Money(currentBalance);
 
             //creates path to log purchases
@@ -87,7 +75,7 @@ namespace Capstone
             {
                 Console.WriteLine("Please insert money in whole dollars($1, $2, $5, or $10)");
                 string currentMoneyProvidedString = Console.ReadLine();
-                decimal newCurrentMoneyProvided = decimal.Parse(currentMoneyProvidedString);
+                decimal newCurrentMoneyProvided = int.Parse(currentMoneyProvidedString);
                 currentBalance = currentBalance + newCurrentMoneyProvided;
                 Console.WriteLine("Current money provided: " + "$" + currentBalance);
 
@@ -112,7 +100,7 @@ namespace Capstone
             else if (userInputPurchase == "2") //Select Product
             {
                 //Print item list
-                DisplayItems();
+                vendoMatic.DisplayItems();
                 Console.WriteLine("Please enter the location code for your item.");
                 string enteredItemID = Console.ReadLine().ToUpper();
                 Item selectedItem = new Item(enteredItemID);
@@ -123,21 +111,26 @@ namespace Capstone
                     Console.WriteLine("You have entered an invalid item code");
                     //return to Main Menu
                 }
-                //else if (selectedItem.ItemExists(enteredItemID) /*&& item is SOLDOUT*/)
-                //{
-                //    Console.WriteLine("The item you selected is Sold Out");
-                //    //return to Main Menu
-                //}
+                else if (selectedItem.ItemExists(enteredItemID) && vendoMatic.IsOutOfStock(enteredItemID))
+                {
+                    Console.WriteLine("The item you selected is Sold Out");
+                    //return to Main Menu
+                }
                 else if (currentBalance >= selectedItem.ItemPrice)
                 {                    
                     vendoMatic.DispenseItem(enteredItemID);
                     vendoMatic.DispenseItemPrintOut(enteredItemID, currentBalance);
+                    currentBalance = currentBalance - selectedItem.ItemPrice;
                 }
-                else
+                else if (currentBalance < selectedItem.ItemPrice)
                 {
                     Console.WriteLine("You do not have enough money to make that purchase. Please input money.");
                 }
-                currentBalance = currentBalance - selectedItem.ItemPrice;
+                else
+                {
+                    
+                }
+                
                 PurchaseItems();
 
             }
@@ -162,8 +155,7 @@ namespace Capstone
                     //return to PurchaseItems menu and rerun
                 }
                 //Return to Main Menu
-                Menu main = new Menu();
-                main.MainMenu();
+                MainMenu();
 
             }
         }

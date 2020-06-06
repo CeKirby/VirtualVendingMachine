@@ -8,6 +8,7 @@ namespace Capstone
     public class Inventory
     {
 
+
         public string InputFile
         {
             get
@@ -23,11 +24,21 @@ namespace Capstone
             foreach (KeyValuePair<string, string> kvp in GoodsKeyDictionary)
             {
                 Item item = new Item(kvp.Key);
-                Console.WriteLine($"{kvp.Key}] {kvp.Value} - ${item.ItemPrice}  Available: itemsLeft");
+                Console.WriteLine($"{kvp.Key}] {kvp.Value} - ${item.ItemPrice}  Available: {stock[kvp.Key]}");
 
             }
             
         }
+
+        public Dictionary<string, int> stock = new Dictionary<string, int>
+            {
+                    {"A1", 5 }, {"A2", 5 }, {"A3", 5 }, {"A4", 5 },
+                    {"B1", 5 }, {"B2", 5 }, {"B3", 5 }, {"B4", 5 },
+                    {"C1", 5 }, {"C2", 5 }, {"C3", 5 }, {"C4", 5 },
+                    {"D1", 5 }, {"D2", 5 }, {"D3", 5 }, {"D4", 5 },
+             };
+
+
 
         //holds ID and Name
         public Dictionary<string, string> GoodsKeyDictionary
