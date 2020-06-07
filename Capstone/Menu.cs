@@ -29,7 +29,7 @@ namespace Capstone
                     return true;
                 case "4":
                     Console.WriteLine("Hidden menu");
-                    UserHiddenMenu();
+                    SalesReport();
                     menuSpacer();
                     return true;
                 case "3":
@@ -40,9 +40,27 @@ namespace Capstone
             }
         }
 
-        private void UserHiddenMenu()
+        private string SalesReport()
         {
-            throw new NotImplementedException();
+            DateTime now = DateTime.Now;
+            string outputDirectory = @"..\..\..\..";
+            string outputFileName = $"SalesReport{now}.txt";
+            string outputFullPath = Path.Combine(outputDirectory, outputFileName);
+            
+            try
+            {
+                using (StreamWriter sw = new StreamWriter(outputFullPath))
+                {
+                    sw.WriteLine();
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("There was an error");
+                Console.WriteLine(e.Message);
+            }
+
+            return "";
         }
          public void menuSpacer()
         {
@@ -70,7 +88,6 @@ namespace Capstone
             Console.WriteLine("(2) Select Product");
             Console.WriteLine("(3) Finish Transaction");
             Console.WriteLine();
-            //Console.WriteLine("Current money provided: " + "$" + currentBalance);
             string userInputPurchase = Console.ReadLine();
 
             if (userInputPurchase == "1") //Feed Money
@@ -124,6 +141,7 @@ namespace Capstone
                 {
                     vendoMatic.DispenseItem(enteredItemID, currentBalance);                  
                     currentBalance = currentBalance - selectedItem.ItemPrice;
+                    
                 }
                 else if (currentBalance < selectedItem.ItemPrice)
                 {
@@ -131,7 +149,7 @@ namespace Capstone
                 }
                 else
                 {
-
+                    //return to main menu
                 }
                 
                 try
@@ -171,8 +189,12 @@ namespace Capstone
                     Console.WriteLine(e.Message);
                     //return to PurchaseItems menu and rerun
                 }
-                
 
+
+            }
+            else
+            {
+                Console.WriteLine("Please choose an option from the menu provided.");
             }
         }
 
