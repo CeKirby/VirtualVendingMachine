@@ -9,6 +9,7 @@ namespace Capstone
     public class Menu
     {
         VendingMachine vendoMatic = new VendingMachine();
+        SalesReport salesReport = new SalesReport();
         public bool MainMenu()
         {
 
@@ -28,40 +29,18 @@ namespace Capstone
                     PurchaseItems();
                     return true;
                 case "4":
-                    Console.WriteLine("Hidden menu");
-                    SalesReport();
+                    Console.WriteLine("Sales Report");
                     menuSpacer();
+                    //PrintSalesReport();
                     return true;
                 case "3":
-                    
                     return false;
                 default:
                     return true;
             }
         }
 
-        private string SalesReport()
-        {
-            DateTime now = DateTime.Now;
-            string outputDirectory = @"..\..\..\..";
-            string outputFileName = $"SalesReport{now}.txt";
-            string outputFullPath = Path.Combine(outputDirectory, outputFileName);
-            
-            try
-            {
-                using (StreamWriter sw = new StreamWriter(outputFullPath))
-                {
-                    sw.WriteLine();
-                }
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("There was an error");
-                Console.WriteLine(e.Message);
-            }
 
-            return "";
-        }
          public void menuSpacer()
         {
             Console.WriteLine();
@@ -137,10 +116,12 @@ namespace Capstone
                     Console.WriteLine("The item you selected is SOLD OUT");
                     //return to Main Menu
                 }
-                else if (currentBalance >= selectedItem.ItemPrice)
+                else if (currentBalance >= selectedItem.ItemPrice) //Purchse Item succesful
                 {
                     vendoMatic.DispenseItem(enteredItemID, currentBalance);                  
                     currentBalance = currentBalance - selectedItem.ItemPrice;
+                    salesReport.UpdateSalesReport(enteredItemID);
+                    
                     
                 }
                 else if (currentBalance < selectedItem.ItemPrice)
@@ -171,7 +152,6 @@ namespace Capstone
             }
             else if (userInputPurchase == "3") //Finish Transaction
             {
-                //call method GiveChange
                 Money money = new Money(currentBalance);
                 decimal changeNeeded = money.CurrentBalance;
                 Console.WriteLine(vendoMatic.GiveChange(changeNeeded));

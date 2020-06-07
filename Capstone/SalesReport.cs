@@ -9,7 +9,7 @@ namespace Capstone
     {
         public string OutputFile()
         {
-            DateTime today = DateTime.Today;
+            string today = DateTime.Now.ToString("yyyy-MMdd");
             string outputDirectory = @"..\..\..\..";
             string outputFileName = $"SalesReport{today}.txt";
             string outputFullPath = Path.Combine(outputDirectory, outputFileName);
@@ -41,7 +41,7 @@ namespace Capstone
             }
         }
 
-        public string TotalSales(Dictionary<string, int> salesReport)
+        public string TotalSales()
         {
             decimal totalSales = 0.0M;
             foreach (KeyValuePair<string, int> kvp in SalesReportDictionary)
@@ -50,6 +50,30 @@ namespace Capstone
                 totalSales = item.ItemPrice * kvp.Value;
             }
             return $"Total Sales: {totalSales}";
+        }
+
+        public void LogSalesReport()
+        {
+            try
+            {
+                using (StreamWriter sw = new StreamWriter(OutputFile(), true))
+                {
+                    foreach(KeyValuePair<string, int> kvp in SalesReportDictionary)
+                    {
+                        sw.WriteLine($"{kvp.Key} | {kvp.Value}");
+                    }
+                    sw.WriteLine(TotalSales());
+                }
+            }
+            catch (IOException ioe)
+            {
+                Console.WriteLine("There was an error getting the sales report file.");
+                Console.WriteLine(ioe.Message);
+            } catch (Exception e)
+            {
+                Console.WriteLine("There was an error");
+                Console.WriteLine(e.Message);
+            }
         }
 
 
