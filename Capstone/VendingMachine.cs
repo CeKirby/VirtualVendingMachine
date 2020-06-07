@@ -43,30 +43,35 @@ namespace Capstone
         }
 
 
-        private const decimal dollarValue = 1m;
-        private const decimal quarterValue = .25M;
-        private const decimal dimeValue = .10M;
-        private const decimal nickelValue = .05M;
+        //private const decimal dollarValue = 1m;
+        //private const decimal quarterValue = .25M;
+        //private const decimal dimeValue = .10M;
+        //private const decimal nickelValue = .05M;
 
-        private int dollarAmount = 0;
-        private int quarterAmount = 0;
-        private int dimeAmount = 0;
-        private int nickelAmount = 0;
+        //private int dollarAmount = 0;
+        //private int quarterAmount = 0;
+        //private int dimeAmount = 0;
+        //private int nickelAmount = 0;
         public string GiveChange(decimal change)
         {
             Money money = new Money(change);
-            decimal totalChange = change;
-
             //variables
+            decimal totalChange = change;
+            int dollarAmount = 0;
+            int quarterAmount = 0;
+            int dimeAmount = 0;
+            int nickelAmount = 0;
             string result = "";
-            dollarAmount = (int)(change / dollarValue);
-            change -= dollarAmount / dollarValue;
-            quarterAmount = (int)(change / quarterValue);
-            change -= quarterAmount * quarterValue;
-            dimeAmount = (int)(change / dimeValue);
-            change -= dimeAmount * dimeValue;
-            nickelAmount = (int)(change / nickelValue);
-            change -= nickelAmount * nickelValue;
+        
+        
+            dollarAmount = (int)(change / Money.dollarValue);
+            change -= dollarAmount / Money.dollarValue;
+            quarterAmount = (int)(change / Money.quarterValue);
+            change -= quarterAmount * Money.quarterValue;
+            dimeAmount = (int)(change / Money.dimeValue);
+            change -= dimeAmount * Money.dimeValue;
+            nickelAmount = (int)(change / Money.nickelValue);
+            change -= nickelAmount * Money.nickelValue;
 
             //print-out of change 
             if (totalChange < 0)
