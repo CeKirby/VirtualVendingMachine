@@ -177,7 +177,7 @@ namespace Capstone
                     //return to PurchaseItems menu and rerun
                 }
                 //Return to Main Menu
-                MainMenu();
+                //MainMenu();
 
             }
         }
