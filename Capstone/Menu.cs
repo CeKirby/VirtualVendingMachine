@@ -6,7 +6,7 @@ using System.IO;
 namespace Capstone
 {
 
-    public class Menu 
+    public class Menu
     {
         VendingMachine vendoMatic = new VendingMachine();
         public bool MainMenu()
@@ -49,11 +49,11 @@ namespace Capstone
             throw new NotImplementedException();
         }
 
-        
+
         decimal currentBalance = 0.00M;
         public void PurchaseItems()
         {
-            
+
             Money userMoney = new Money(currentBalance);
 
             //creates path to log purchases
@@ -83,7 +83,7 @@ namespace Capstone
                 }
                 currentBalance = currentBalance + newCurrentMoneyProvided;
                 Console.WriteLine("Current money provided: " + "$" + currentBalance);
-                
+
                 try
                 {
                     using (StreamWriter sw = new StreamWriter(outputFullPath, true))
@@ -122,9 +122,9 @@ namespace Capstone
                     //return to Main Menu
                 }
                 else if (currentBalance >= selectedItem.ItemPrice)
-                {                    
+                {
                     vendoMatic.DispenseItem(enteredItemID);
-                    vendoMatic.DispenseItemPrintOut(enteredItemID, currentBalance);
+                    vendoMatic.DispenseItemPrintOut(enteredItemID, currentBalance);                    
                     currentBalance = currentBalance - selectedItem.ItemPrice;
                 }
                 else if (currentBalance < selectedItem.ItemPrice)
@@ -133,9 +133,26 @@ namespace Capstone
                 }
                 else
                 {
-                    
+
                 }
                 
+                try
+                {
+                    using (StreamWriter sw = new StreamWriter(outputFullPath, true))
+                    {
+                        //currentBalance = currentBalance + newCurrentMoneyProvided;
+                        //userMoney.CurrentBalance += newCurrentMoneyProvided;
+                        sw.WriteLine(now.ToString() + " " + selectedItem.ItemName + " " + selectedItem.ItemID + " " + "$" + (currentBalance + selectedItem.ItemPrice) + " " + currentBalance);
+                        //Console.WriteLine("Current money provided: " + currentBalance);
+                    }
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("There was an error");
+                    Console.WriteLine(e.Message);
+                    //return to PurchaseItems menu and rerun
+                }
+
                 PurchaseItems();
 
             }
@@ -149,7 +166,7 @@ namespace Capstone
                 {
                     using (StreamWriter sw = new StreamWriter(outputFullPath, true))
                     {
-                        sw.WriteLine(now.ToString() + " " + "GIVE CHANGE: " + currentBalance + 0.00M);
+                        sw.WriteLine(now.ToString() + " " + "GIVE CHANGE:" + " " + "$" + currentBalance + 0.00M);
 
                     }
                 }
@@ -165,7 +182,7 @@ namespace Capstone
             }
         }
 
-       
+
     }
 }
 
