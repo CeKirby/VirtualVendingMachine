@@ -37,7 +37,7 @@ namespace Capstone
                     Console.WriteLine();
                     return true;
                 case "3":
-                    Console.WriteLine("Thank you! Please come again!");
+                    
                     return false;
                 default:
                     return true;

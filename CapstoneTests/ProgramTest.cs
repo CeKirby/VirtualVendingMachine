@@ -49,7 +49,7 @@ namespace CapstoneTests
         public void ItemDoesntExists3()
         {
             Item isItThere = new Item("");
-            string expectedResult = "You have entered an invalid item code";
+            bool expectedResult = false;
             Assert.AreEqual(expectedResult, isItThere.ItemExists("A45"));
         }
 
