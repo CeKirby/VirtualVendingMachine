@@ -22,9 +22,7 @@ namespace Capstone
             {
                 case "1":
                     vendoMatic.DisplayItems();
-                    Console.WriteLine();
-                    Console.WriteLine("---~*~---");
-                    Console.WriteLine();
+                    menuSpacer();
                     return true;
                 case "2":
                     PurchaseItems();
@@ -32,9 +30,7 @@ namespace Capstone
                 case "4":
                     Console.WriteLine("Hidden menu");
                     UserHiddenMenu();
-                    Console.WriteLine();
-                    Console.WriteLine("---~*~---");
-                    Console.WriteLine();
+                    menuSpacer();
                     return true;
                 case "3":
                     
@@ -48,7 +44,12 @@ namespace Capstone
         {
             throw new NotImplementedException();
         }
-
+         public void menuSpacer()
+        {
+            Console.WriteLine();
+            Console.WriteLine("---~*~---");
+            Console.WriteLine();
+        }
 
         decimal currentBalance = 0.00M;
         public void PurchaseItems()
@@ -64,6 +65,7 @@ namespace Capstone
 
 
             //Purchase Items Menu
+            menuSpacer();
             Console.WriteLine("(1) Feed Money");
             Console.WriteLine("(2) Select Product");
             Console.WriteLine("(3) Finish Transaction");
@@ -88,10 +90,7 @@ namespace Capstone
                 {
                     using (StreamWriter sw = new StreamWriter(outputFullPath, true))
                     {
-                        //currentBalance = currentBalance + newCurrentMoneyProvided;
-                        //userMoney.CurrentBalance += newCurrentMoneyProvided;
                         sw.WriteLine(now.ToString() + " " + "FEED MONEY: " + "$" + newCurrentMoneyProvided + " " + "$" + currentBalance);
-                        //Console.WriteLine("Current money provided: " + currentBalance);
                     }
                 }
                 catch (Exception e)
@@ -123,8 +122,7 @@ namespace Capstone
                 }
                 else if (currentBalance >= selectedItem.ItemPrice)
                 {
-                    vendoMatic.DispenseItem(enteredItemID);
-                    vendoMatic.DispenseItemPrintOut(enteredItemID, currentBalance);                    
+                    vendoMatic.DispenseItem(enteredItemID, currentBalance);                  
                     currentBalance = currentBalance - selectedItem.ItemPrice;
                 }
                 else if (currentBalance < selectedItem.ItemPrice)
@@ -140,10 +138,7 @@ namespace Capstone
                 {
                     using (StreamWriter sw = new StreamWriter(outputFullPath, true))
                     {
-                        //currentBalance = currentBalance + newCurrentMoneyProvided;
-                        //userMoney.CurrentBalance += newCurrentMoneyProvided;
                         sw.WriteLine(now.ToString() + " " + selectedItem.ItemName + " " + selectedItem.ItemID + " " + "$" + (currentBalance + selectedItem.ItemPrice) + " " + "$" + currentBalance);
-                        //Console.WriteLine("Current money provided: " + currentBalance);
                     }
                 }
                 catch (Exception e)
@@ -176,8 +171,7 @@ namespace Capstone
                     Console.WriteLine(e.Message);
                     //return to PurchaseItems menu and rerun
                 }
-                //Return to Main Menu
-                //MainMenu();
+                
 
             }
         }

@@ -9,10 +9,14 @@ namespace Capstone
     {
 
         Inventory inventory = new Inventory();
-        public void DispenseItem(string itemId)
+        public void DispenseItem(string itemID, decimal currentBalance)
         {
-                int currentNumber = inventory.stock[itemId];
-                inventory.stock[itemId] = --currentNumber;
+            Item item = new Item(itemID);
+            int currentNumber = inventory.stock[itemID];
+            inventory.stock[itemID] = --currentNumber;
+            Console.WriteLine($"Dispensing your {item.ItemName}. It cost {item.ItemPrice}. You have a remaining balance of {currentBalance - item.ItemPrice}");
+            Console.WriteLine(item.ItemMessage(item.ItemType));
+            //currentBalance = currentBalance - item.ItemPrice;
         }
         public void DisplayItems()
         {
@@ -34,14 +38,6 @@ namespace Capstone
         {
             return (inventory.stock[itemID] < 1);
         }
-        public void DispenseItemPrintOut(string itemID, decimal currentBalance)
-        {
-            Item item = new Item(itemID);            
-            Console.WriteLine($"Dispensing your {item.ItemName}. It cost {item.ItemPrice}. You have a remaining balance of {currentBalance - item.ItemPrice}");
-            Console.WriteLine(item.ItemMessage(item.ItemType));
-            currentBalance = currentBalance - item.ItemPrice;
-        }
-
 
         public string GiveChange(decimal change)
         {
