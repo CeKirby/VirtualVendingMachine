@@ -42,14 +42,14 @@ namespace CapstoneTests
         public void ItemDoesntExists2()
         {
             Item isItThere = new Item("");
-            bool expectedResult = true;
+            bool expectedResult = false;
             Assert.AreEqual(expectedResult, isItThere.ItemExists("a4"));
         }
         [TestMethod]
         public void ItemDoesntExists3()
         {
             Item isItThere = new Item("");
-            string expectedResult = "You have entered an invalid item code";
+            bool expectedResult = false;
             Assert.AreEqual(expectedResult, isItThere.ItemExists("A45"));
         }
 

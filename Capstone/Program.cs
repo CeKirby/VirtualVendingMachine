@@ -20,6 +20,7 @@ namespace Capstone
             {
                 showMainMenu = main.MainMenu();
             }
+            Console.WriteLine("Thank you! Please come again!");
 
         }
 
