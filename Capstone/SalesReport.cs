@@ -9,21 +9,47 @@ namespace Capstone
     {
         public string OutputFile()
         {
-            DateTime now = DateTime.Now;
+            DateTime today = DateTime.Today;
             string outputDirectory = @"..\..\..\..";
-            string outputFileName = $"SalesReport{now}.txt";
+            string outputFileName = $"SalesReport{today}.txt";
             string outputFullPath = Path.Combine(outputDirectory, outputFileName);
             return outputFullPath;
         }
 
-        public List<string> SalesReportList = new List<string>();
+        //Contains itemID of each item and the number sold
+        public Dictionary<string, int> SalesReportDictionary = new Dictionary<string, int>();
 
-        public void UpdateSalesReport()
+        public void GenerateEmptyReport()
         {
-            foreach(string update in SalesReportList)
+            Inventory inventory = new Inventory();
+            foreach(KeyValuePair<string, string> kvp in inventory.GoodsKeyDictionary)
             {
-
+                SalesReportDictionary.Add(kvp.Key, 0);
             }
+
+        }
+
+        public void UpdateSalesReport(string itemID)
+        {
+            foreach(KeyValuePair<string, int> kvp in SalesReportDictionary)
+            {
+                if (itemID == kvp.Key)
+                {
+                    int newValue = kvp.Value + 1;
+                    SalesReportDictionary[kvp.Key] = newValue;
+                }
+            }
+        }
+
+        public string TotalSales(Dictionary<string, int> salesReport)
+        {
+            decimal totalSales = 0.0M;
+            foreach (KeyValuePair<string, int> kvp in SalesReportDictionary)
+            {
+                Item item = new Item(kvp.Key);
+                totalSales = item.ItemPrice * kvp.Value;
+            }
+            return $"Total Sales: {totalSales}";
         }
 
 
