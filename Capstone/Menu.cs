@@ -142,7 +142,7 @@ namespace Capstone
                     {
                         //currentBalance = currentBalance + newCurrentMoneyProvided;
                         //userMoney.CurrentBalance += newCurrentMoneyProvided;
-                        sw.WriteLine(now.ToString() + " " + selectedItem.ItemName + " " + selectedItem.ItemID + " " + "$" + (currentBalance + selectedItem.ItemPrice) + " " + currentBalance);
+                        sw.WriteLine(now.ToString() + " " + selectedItem.ItemName + " " + selectedItem.ItemID + " " + "$" + (currentBalance + selectedItem.ItemPrice) + " " + "$" + currentBalance);
                         //Console.WriteLine("Current money provided: " + currentBalance);
                     }
                 }
@@ -166,7 +166,7 @@ namespace Capstone
                 {
                     using (StreamWriter sw = new StreamWriter(outputFullPath, true))
                     {
-                        sw.WriteLine(now.ToString() + " " + "GIVE CHANGE:" + " " + "$" + currentBalance + 0.00M);
+                        sw.WriteLine(now.ToString() + " " + "GIVE CHANGE:" + " " + "$" + currentBalance + " " + "$" + 0.00M);
 
                     }
                 }
