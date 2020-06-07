@@ -51,23 +51,25 @@ namespace Capstone
             }
         }
 
-        public void PrintItemMessage(string ItemType)
+        public string ItemMessage(string ItemType)
         {
+            string message = "";
             switch (ItemType)
             {
                 case "Chips":
-                    Console.WriteLine("Crunch Crunch, Yum!");
+                    message = "Crunch Crunch, Yum!";
                     break;
                 case "Candy":
-                    Console.WriteLine("Munch Munch, Yum!");
+                    message = "Munch Munch, Yum!";
                     break;
                 case "Drink":
-                    Console.WriteLine("Glug Glug, Yum!");
+                    message ="Glug Glug, Yum!";
                     break;
                 case "Gum":
-                    Console.WriteLine("Chew Chew, Yum!");
+                    message ="Chew Chew, Yum!";
                     break;
                 }
+            return message;
 
         }
 

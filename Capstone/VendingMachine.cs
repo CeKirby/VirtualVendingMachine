@@ -38,20 +38,11 @@ namespace Capstone
         {
             Item item = new Item(itemID);            
             Console.WriteLine($"Dispensing your {item.ItemName}. It cost {item.ItemPrice}. You have a remaining balance of {currentBalance - item.ItemPrice}");
-            item.PrintItemMessage(item.ItemType);
+            Console.WriteLine(item.ItemMessage(item.ItemType));
             currentBalance = currentBalance - item.ItemPrice;
         }
 
 
-        //private const decimal dollarValue = 1m;
-        //private const decimal quarterValue = .25M;
-        //private const decimal dimeValue = .10M;
-        //private const decimal nickelValue = .05M;
-
-        //private int dollarAmount = 0;
-        //private int quarterAmount = 0;
-        //private int dimeAmount = 0;
-        //private int nickelAmount = 0;
         public string GiveChange(decimal change)
         {
             Money money = new Money(change);
