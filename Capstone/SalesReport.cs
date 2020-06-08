@@ -7,6 +7,7 @@ namespace Capstone
 {
     public class SalesReport
     {
+
         public string OutputFile()
         {
             string today = DateTime.Now.ToString("yyyy-MMdd");
@@ -19,26 +20,28 @@ namespace Capstone
         //Contains itemID of each item and the number sold
         public Dictionary<string, int> SalesReportDictionary = new Dictionary<string, int>();
 
+
         public void GenerateEmptyReport()
         {
             Inventory inventory = new Inventory();
-            foreach(KeyValuePair<string, string> kvp in inventory.GoodsKeyDictionary)
+            foreach (KeyValuePair<string, string> kvp in inventory.GoodsKeyDictionary)
             {
                 SalesReportDictionary.Add(kvp.Key, 0);
             }
 
         }
 
-        public void UpdateSalesReport(string itemID)
+        public Dictionary<string, int> UpdateSalesReport(string itemID)
         {
-            foreach(KeyValuePair<string, int> kvp in SalesReportDictionary)
+            //Dictionary<string, int> salesReport = new Dictionary<string, int>();
+            if (SalesReportDictionary.ContainsKey(itemID))
             {
-                if (itemID == kvp.Key)
-                {
-                    int newValue = kvp.Value + 1;
-                    SalesReportDictionary[kvp.Key] = newValue;
-                }
+
+                int newValue = SalesReportDictionary[itemID] + 1;
+                SalesReportDictionary[itemID] = newValue;
+
             }
+            return SalesReportDictionary;
         }
 
         public string TotalSales()
