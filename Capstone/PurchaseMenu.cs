@@ -82,6 +82,7 @@ namespace Capstone
             return currentBalance;
 
         }
+        //test would create and infinite loop because currentBalance is set through a void method on program.cs
         public decimal UserInput2(decimal currentBalance) //Purchase item
         {
             vendoMatic.DisplayItems();

@@ -39,7 +39,7 @@ namespace Capstone
                     itemType = "Chips";
                 } else if (ItemID.Contains("B"))
                 {
-                    itemType = "Candy;";
+                    itemType = "Candy";
                 } else if (ItemID.Contains("C"))
                 {
                     itemType = "Drink";

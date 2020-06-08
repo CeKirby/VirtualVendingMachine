@@ -51,11 +51,6 @@ namespace CapstoneTests
             Item isItThere = new Item("");
             bool expectedResult = false;
             Assert.AreEqual(expectedResult, isItThere.ItemExists("A45"));
-        }
-
-
-
-
-        //only methods in program and menu that arent void is main menu so this is the only test for both classes 
+        }        
     }
 }
