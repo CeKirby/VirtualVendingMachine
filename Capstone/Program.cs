@@ -12,7 +12,7 @@ namespace Capstone
             Console.WriteLine("Welcome to the Vendo-Matic 800!");
             decimal currentBalance = 0.00M;
             VendingMachine vendoMatic = new VendingMachine();
-            SalesReport salesReport = new SalesReport();
+            //SalesReport salesReport = new SalesReport();
             MainMenu main = new MainMenu();
             PurchaseMenu purchase = new PurchaseMenu();
             Money money = new Money(currentBalance);
@@ -34,14 +34,14 @@ namespace Capstone
                         purchase.PurchaseItemsMenu(money.CurrentBalance);
                         showMainMenu = true;
                         break;
-                    case "4":
-                        Console.WriteLine("Sales Report");
-                        main.menuSpacer();
-                        //PrintSalesReport();
-                        showMainMenu = true;
-                        break;
+                    //case "4":
+                    //    Console.WriteLine("Sales Report");
+                    //    main.menuSpacer();
+                    //    //PrintSalesReport();
+                    //    showMainMenu = true;
+                    //    break;
                     case "3":
-                        salesReport.LogSalesReport();
+                        //salesReport.LogSalesReport();
                         showMainMenu = false;
                         break;
                     default:
