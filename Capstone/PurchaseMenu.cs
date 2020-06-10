@@ -21,6 +21,11 @@ namespace Capstone
             }
         }
 
+        public override string InvalidOption()
+        {
+            return "Please choose an option from the Purchase Items menu";
+        }
+
         public void PurchaseItemsMenu(decimal currentBalance) //Purchase Items Menu
         {
             bool repeatMenu = true;
@@ -47,7 +52,8 @@ namespace Capstone
                 }
                 else
                 {
-                    Console.WriteLine("Please choose an option from the menu provided.");
+                    currentBalance = currentBalance;
+                    Console.WriteLine(InvalidOption());
                 }
             }
         }

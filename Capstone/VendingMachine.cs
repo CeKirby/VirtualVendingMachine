@@ -16,7 +16,7 @@ namespace Capstone
             inventory.stock[itemID] = --currentNumber;
             Console.WriteLine($"Dispensing your {item.ItemName}. It cost {item.ItemPrice}. You have a remaining balance of {currentBalance - item.ItemPrice}");
             Console.WriteLine(item.ItemMessage(item.ItemType));
-            //currentBalance = currentBalance - item.ItemPrice;
+
         }
         public void DisplayItems()
         {
@@ -51,8 +51,6 @@ namespace Capstone
             string result = "";
         
         
-            //dollarAmount = (int)(change / Money.dollarValue);
-            //change -= dollarAmount / Money.dollarValue;
             quarterAmount = (int)(change / Money.quarterValue);
             change -= quarterAmount * Money.quarterValue;
             dimeAmount = (int)(change / Money.dimeValue);
@@ -65,10 +63,6 @@ namespace Capstone
             {
                 result = "No Change For You!!!";
             }
-            //else if (quarterAmount == 0 && nickelAmount == 0 && dimeAmount == 0)
-            //{
-            //    result = $"Your Change Is {dollarAmount} Dollar(s) For a Total of ${totalChange}.";
-            //}
             else if (nickelAmount == 0 && dimeAmount == 0)
             {
                 result = $"Your Change Is {quarterAmount} Quarter(s) For a Total of ${totalChange}.";

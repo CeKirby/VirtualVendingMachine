@@ -13,5 +13,10 @@ namespace Capstone
             Console.WriteLine("(3) Exit");
             Console.WriteLine("Please enter the number of your choice: ");
         }
+
+        public override string InvalidOption()
+        {
+            return "Please choose an option from the Main Menu.";
+        }
     }
 }

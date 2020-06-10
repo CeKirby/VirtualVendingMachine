@@ -16,6 +16,8 @@ namespace Capstone
             Console.WriteLine();
         }
 
+        public abstract string InvalidOption();
+
 
     }
 }
