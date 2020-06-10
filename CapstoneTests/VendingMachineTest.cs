@@ -15,28 +15,28 @@ namespace CapstoneTests
         public void RefundEvenDollors()
         {
             VendingMachine returnMoney = new VendingMachine();
-            string expectedReturn = "Your Change Is 3 Dollar(s) For a Total of $3.";
+            string expectedReturn = "Your Change Is 12 Quarter(s) For a Total of $3.";
             Assert.AreEqual(expectedReturn, returnMoney.GiveChange(3));
         }
         [TestMethod]
         public void RefundDollorsQuarters()
         {
             VendingMachine returnMoney = new VendingMachine();
-            string expectedReturn = "Your Change Is 4 Dollar(s) 3 Quarter(s) For a Total of $4.75.";
+            string expectedReturn = "Your Change Is 19 Quarter(s) For a Total of $4.75.";
             Assert.AreEqual(expectedReturn, returnMoney.GiveChange(4.75m));
         }
         [TestMethod]
         public void RefundDollorsQuartersDimes()
         {
             VendingMachine returnMoney = new VendingMachine();
-            string expectedReturn = "Your Change Is 2 Dollar(s) 2 Quarter(s) and 1 Dime(s) For a Total of $2.60.";
+            string expectedReturn = "Your Change Is 10 Quarter(s) and 1 Dime(s) For a Total of $2.60.";
             Assert.AreEqual(expectedReturn, returnMoney.GiveChange(2.60m));
         }
         [TestMethod]
         public void RefundDollorsQuartersDimesNickles()
         {
             VendingMachine returnMoney = new VendingMachine();
-            string expectedReturn = "Your Change Is 6 Dollar(s) 3 Quarter(s), 1 Dime(s) and 1 Nickel(s) For a Total of $6.90.";
+            string expectedReturn = "Your Change Is 27 Quarter(s), 1 Dime(s) and 1 Nickel(s) For a Total of $6.90.";
             Assert.AreEqual(expectedReturn, returnMoney.GiveChange(6.90m));
         }
         [TestMethod]
