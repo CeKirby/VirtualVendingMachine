@@ -52,7 +52,7 @@ namespace Capstone
                 }
                 else
                 {
-                    currentBalance = currentBalance;
+                    //currentBalance = currentBalance;
                     Console.WriteLine(InvalidOption());
                 }
             }
